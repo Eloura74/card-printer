@@ -8,6 +8,9 @@ export const creatorProfile = {
   creator: "Quentin Faber",
   subtitle: "Création • Conception • Fabrication 3D",
   bio: "Atelier de conception et fabrication 3D de Quentin Faber (@quentinfaber). Présentation de mes créations réelles (tableaux d'art en couches, modélisations Fusion 360, projets robotiques et pièces d'atelier).",
+  email: "faber.quentin@gmail.com",
+  phone: "07 68 83 30 98",
+  phoneRaw: "+33768833098",
   tiktokHandle: "@quentinfaber",
   tiktokUrl: "https://www.tiktok.com/@quentinfaber",
   workshop: [

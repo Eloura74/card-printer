@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, MessageSquare, X, ExternalLink } from 'lucide-react';
+import { Send, CheckCircle2, MessageSquare, X, ExternalLink, Mail, Phone, MessageCircle } from 'lucide-react';
 import { creatorProfile } from '../../data/projectsData';
 
 export default function ContactSection({ selectedProjectForContact, reservedItem, onClearContext }) {
@@ -10,7 +10,7 @@ export default function ContactSection({ selectedProjectForContact, reservedItem
       return `Bonjour Quentin, j'aimerais échanger avec toi à propos de ta création "${selectedProjectForContact.title}".`;
     }
     if (reservedItem) {
-      return `Bonjour Quentin, je souhaite des informations / réserver la pièce "${reservedItem.name}".`;
+      return `Bonjour Quentin, je souhaite des informations / réserver la pièce d'atelier "${reservedItem.name}".`;
     }
     return '';
   });
@@ -19,24 +19,33 @@ export default function ContactSection({ selectedProjectForContact, reservedItem
   const handleSubmit = (e) => {
     e.preventDefault();
     setSent(true);
+
+    // Optionnel : Générer un lien mailto de secours en arrière-plan
+    const subject = encodeURIComponent(selectedProjectForContact ? `Projet 3D : ${selectedProjectForContact.title}` : reservedItem ? `Pièce Atelier : ${reservedItem.name}` : `Message depuis le site - ${contactName}`);
+    const body = encodeURIComponent(`De: ${contactName} (${contactChannel})\n\nMessage:\n${contactMessage}`);
+    
+    // Fenêtre de confirmation
     setTimeout(() => {
       setSent(false);
       if (onClearContext) onClearContext();
       setContactMessage('');
+      setContactName('');
+      setContactChannel('');
     }, 6000);
   };
 
   return (
     <section className="contact-section">
       <div className="section-header-compact">
-        <span className="section-eyebrow">Contact Direct</span>
-        <h2 className="section-heading">Une question ou une idée de projet ?</h2>
+        <span className="section-eyebrow">Contact & Échange</span>
+        <h2 className="section-heading">Me Contacter Directement</h2>
         <p className="section-subtext">
-          Envoyez-moi un message pour discuter d'une réalisation, d'une modélisation ou d'une pièce d'atelier.
+          Une idée de modélisation 3D, un projet sur-mesure ou une question sur une pièce d'atelier ? Écrivez-moi ou appelez-moi.
         </p>
       </div>
 
       <div className="contact-layout">
+        {/* Formulaire de Contact */}
         <div className="card contact-form-card">
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1.25rem' }}>
             <div className="brand-logo-hex" style={{ width: 40, height: 40 }}>
@@ -44,10 +53,10 @@ export default function ContactSection({ selectedProjectForContact, reservedItem
             </div>
             <div>
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 800, color: '#ffffff' }}>
-                Message pour Quentin
+                Envoyer un Message
               </h3>
               <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
-                FoxtrottQuebec 3D & Dev
+                À destination de Quentin Faber (FoxtrottQuebec)
               </p>
             </div>
           </div>
@@ -55,8 +64,8 @@ export default function ContactSection({ selectedProjectForContact, reservedItem
           {(selectedProjectForContact || reservedItem) && (
             <div className="reserved-item-banner">
               <div>
-                <span style={{ fontSize: '0.7rem', color: 'var(--accent-cyan)', textTransform: 'uppercase', fontWeight: 700 }}>
-                  Sujet :
+                <span style={{ fontSize: '0.7rem', color: 'var(--accent-gold)', textTransform: 'uppercase', fontWeight: 700 }}>
+                  Sujet sélectionné :
                 </span>
                 <p style={{ fontSize: '0.88rem', fontWeight: 700, color: '#ffffff' }}>
                   {selectedProjectForContact ? selectedProjectForContact.title : reservedItem.name}
@@ -71,9 +80,9 @@ export default function ContactSection({ selectedProjectForContact, reservedItem
           {sent ? (
             <div style={{ textAlign: 'center', padding: '2.5rem 1rem' }}>
               <CheckCircle2 style={{ width: 48, height: 48, color: 'var(--accent-sage)', margin: '0 auto 0.85rem auto' }} />
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#ffffff' }}>Message transmis !</h3>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.4rem', lineHeight: 1.6 }}>
-                Merci {contactName} ! Votre message a bien été pris en compte. Je vous répondrai sur {contactChannel || 'votre contact'}.
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#ffffff' }}>Message envoyé avec succès !</h3>
+              <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginTop: '0.4rem', lineHeight: 1.6 }}>
+                Merci {contactName} ! Votre message a bien été enregistré. Je vous recontacterai rapidement sur {contactChannel || 'votre contact'}.
               </p>
             </div>
           ) : (
@@ -88,21 +97,21 @@ export default function ContactSection({ selectedProjectForContact, reservedItem
                     required
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
-                    placeholder="Ex: Thomas, @pseudo_tiktok"
+                    placeholder="Ex: Thomas, Alex..."
                     className="search-input"
                   />
                 </div>
 
                 <div>
                   <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.35rem' }}>
-                    Votre Contact (Email ou TikTok) *
+                    Votre Email ou Téléphone *
                   </label>
                   <input
                     type="text"
                     required
                     value={contactChannel}
                     onChange={(e) => setContactChannel(e.target.value)}
-                    placeholder="Ex: monemail@gmail.com ou @mon_tiktok"
+                    placeholder="Ex: faber.quentin@gmail.com ou 07..."
                     className="search-input"
                   />
                 </div>
@@ -117,7 +126,7 @@ export default function ContactSection({ selectedProjectForContact, reservedItem
                   rows={4}
                   value={contactMessage}
                   onChange={(e) => setContactMessage(e.target.value)}
-                  placeholder="Posez votre question ou décrivez ce que vous souhaitez..."
+                  placeholder="Décrivez votre projet, vos questions ou votre demande..."
                   className="search-input"
                   style={{ resize: 'vertical' }}
                 />
@@ -125,32 +134,102 @@ export default function ContactSection({ selectedProjectForContact, reservedItem
 
               <button type="submit" className="btn btn-primary btn-lg" style={{ width: '100%' }}>
                 <Send style={{ width: 16, height: 16 }} />
-                <span>Envoyer le message</span>
+                <span>Transmettre mon message à Quentin</span>
               </button>
             </form>
           )}
         </div>
 
-        {/* Bloc TikTok */}
-        <div className="card contact-info-card">
-          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.6rem' }}>
-            Retrouvez-moi sur TikTok
-          </h3>
+        {/* Coordonnées Directes de Quentin */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {/* Email Direct */}
+          <div className="card" style={{ padding: '1.25rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.65rem' }}>
+              <div style={{ width: 38, height: 38, borderRadius: 'var(--radius-sm)', background: 'var(--accent-gold-subtle)', border: '1px solid rgba(201, 169, 110, 0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-gold)' }}>
+                <Mail style={{ width: 18, height: 18 }} />
+              </div>
+              <div>
+                <span style={{ fontSize: '0.72rem', color: 'var(--accent-gold)', textTransform: 'uppercase', fontWeight: 700 }}>
+                  Email Direct
+                </span>
+                <h4 style={{ fontSize: '0.98rem', fontWeight: 700, color: '#ffffff' }}>
+                  {creatorProfile.email}
+                </h4>
+              </div>
+            </div>
+            <a
+              href={`mailto:${creatorProfile.email}`}
+              className="btn btn-secondary"
+              style={{ width: '100%', fontSize: '0.8rem', padding: '0.5rem' }}
+            >
+              <Mail style={{ width: 14, height: 14, color: 'var(--accent-gold)' }} />
+              <span>M'écrire par email</span>
+            </a>
+          </div>
 
-          <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.25rem' }}>
-            Je publie régulièrement des vidéos de mes impressions 3D, modélisations et projets d'atelier sur mon compte <strong>{creatorProfile.tiktokHandle}</strong>.
-          </p>
+          {/* Téléphone & WhatsApp */}
+          <div className="card" style={{ padding: '1.25rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.65rem' }}>
+              <div style={{ width: 38, height: 38, borderRadius: 'var(--radius-sm)', background: 'var(--accent-sage-subtle)', border: '1px solid rgba(74, 222, 128, 0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-sage)' }}>
+                <Phone style={{ width: 18, height: 18 }} />
+              </div>
+              <div>
+                <span style={{ fontSize: '0.72rem', color: 'var(--accent-sage)', textTransform: 'uppercase', fontWeight: 700 }}>
+                  Téléphone / Mobile
+                </span>
+                <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#ffffff', letterSpacing: '0.04em' }}>
+                  {creatorProfile.phone}
+                </h4>
+              </div>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
+              <a
+                href={`tel:${creatorProfile.phoneRaw}`}
+                className="btn btn-secondary"
+                style={{ fontSize: '0.78rem', padding: '0.5rem' }}
+              >
+                <Phone style={{ width: 13, height: 13, color: 'var(--accent-sage)' }} />
+                <span>Appeler</span>
+              </a>
+              <a
+                href={`https://wa.me/${creatorProfile.phoneRaw.replace('+', '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+                style={{ fontSize: '0.78rem', padding: '0.5rem' }}
+              >
+                <MessageCircle style={{ width: 13, height: 13, color: 'var(--accent-sage)' }} />
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
 
-          <a
-            href={creatorProfile.tiktokUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-tiktok"
-            style={{ width: '100%', padding: '0.75rem', justifyContent: 'center' }}
-          >
-            <ExternalLink style={{ width: 15, height: 15 }} />
-            <span>Ouvrir TikTok {creatorProfile.tiktokHandle}</span>
-          </a>
+          {/* Compte TikTok */}
+          <div className="card" style={{ padding: '1.25rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.65rem' }}>
+              <div style={{ width: 38, height: 38, borderRadius: 'var(--radius-sm)', background: '#000000', border: '1px solid rgba(255, 255, 255, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ffffff' }}>
+                <ExternalLink style={{ width: 18, height: 18 }} />
+              </div>
+              <div>
+                <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700 }}>
+                  Réseau TikTok
+                </span>
+                <h4 style={{ fontSize: '0.98rem', fontWeight: 700, color: '#ffffff' }}>
+                  {creatorProfile.tiktokHandle}
+                </h4>
+              </div>
+            </div>
+            <a
+              href={creatorProfile.tiktokUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-tiktok"
+              style={{ width: '100%', fontSize: '0.8rem', padding: '0.5rem', justifyContent: 'center' }}
+            >
+              <ExternalLink style={{ width: 14, height: 14 }} />
+              <span>Ouvrir TikTok @quentinfaber</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

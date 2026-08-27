@@ -1,7 +1,7 @@
 import React from 'react';
 import { creatorProfile } from '../../data/projectsData';
 import { vercelProfile } from '../../data/vercelProjectsData';
-import { ExternalLink, Box, Cloud } from 'lucide-react';
+import { ExternalLink, Box, Mail, Phone } from 'lucide-react';
 
 export default function Footer({ setActiveTab }) {
   return (
@@ -19,6 +19,22 @@ export default function Footer({ setActiveTab }) {
           <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', maxWidth: 450, lineHeight: 1.6 }}>
             {creatorProfile.bio}
           </p>
+          <div style={{ display: 'flex', gap: '1.25rem', marginTop: '0.85rem', flexWrap: 'wrap' }}>
+            <a
+              href={`mailto:${creatorProfile.email}`}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.82rem', color: 'var(--accent-gold)', textDecoration: 'none' }}
+            >
+              <Mail style={{ width: 13, height: 13 }} />
+              <span>{creatorProfile.email}</span>
+            </a>
+            <a
+              href={`tel:${creatorProfile.phoneRaw}`}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.82rem', color: 'var(--accent-sage)', textDecoration: 'none' }}
+            >
+              <Phone style={{ width: 13, height: 13 }} />
+              <span>{creatorProfile.phone}</span>
+            </a>
+          </div>
         </div>
 
         <div className="footer-links">
