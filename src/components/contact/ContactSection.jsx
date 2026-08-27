@@ -47,7 +47,7 @@ export default function ContactSection({ selectedProjectForContact, reservedItem
                 Message pour Quentin
               </h3>
               <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
-                FoxtrottQuebec 3D Design
+                FoxtrottQuebec 3D & Dev
               </p>
             </div>
           </div>
@@ -55,7 +55,7 @@ export default function ContactSection({ selectedProjectForContact, reservedItem
           {(selectedProjectForContact || reservedItem) && (
             <div className="reserved-item-banner">
               <div>
-                <span style={{ fontSize: '0.7rem', color: 'var(--accent-terracotta)', textTransform: 'uppercase', fontWeight: 700 }}>
+                <span style={{ fontSize: '0.7rem', color: 'var(--accent-cyan)', textTransform: 'uppercase', fontWeight: 700 }}>
                   Sujet :
                 </span>
                 <p style={{ fontSize: '0.88rem', fontWeight: 700, color: '#ffffff' }}>
@@ -78,7 +78,7 @@ export default function ContactSection({ selectedProjectForContact, reservedItem
             </div>
           ) : (
             <form onSubmit={handleSubmit}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem', marginBottom: '1rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.85rem', marginBottom: '1rem' }}>
                 <div>
                   <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.35rem' }}>
                     Votre Nom ou Pseudo *
