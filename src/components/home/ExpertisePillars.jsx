@@ -1,39 +1,39 @@
 import React from 'react';
-import { Cpu, Layers, Wrench, Sparkles, Box, CheckCircle } from 'lucide-react';
+import { Box, Layers, Wrench, CheckCircle } from 'lucide-react';
 
-export default function ExpertisePillars({ setActiveTab }) {
+export default function ExpertisePillars() {
   const pillars = [
     {
-      id: 'concevoir',
+      id: 'cao',
       icon: <Box style={{ width: 22, height: 22, color: 'var(--accent-fjord)' }} />,
-      tag: 'Conception CAO',
-      title: 'CONCEVOIR',
-      desc: 'Modélisation paramétrique sous Fusion 360, calcul de tolérances mécaniques, cinématique et prototypage fonctionnel sur-mesure.',
-      points: ['Fusion 360', 'Modélisation paramétrique', 'Cinématique & assemblages']
+      tag: 'Conception',
+      title: 'MODÉLISATION CAO',
+      desc: 'Création de pièces et mécanismes sous Fusion 360 : pièces fonctionnelles, tolérances d\'emboîtement et assemblages articulés.',
+      points: ['Modélisation sous Fusion 360', 'Pièces mécaniques & structures', 'Adaptations sur-mesure']
     },
     {
-      id: 'fabriquer',
+      id: 'impression',
       icon: <Layers style={{ width: 22, height: 22, color: 'var(--accent-terracotta)' }} />,
-      tag: 'Fabrication Additive',
-      title: 'FABRIQUER',
-      desc: 'Superposition multicouches Hueforge au 0.08 mm, lithophanies, extrusion haut débit et maîtrise des polymères techniques.',
-      points: ['Hueforge haute fidélité', 'PLA / PETG / ASA / TPU', 'Bambu AMS & VZBot High-Flow']
+      tag: 'Fabrication',
+      title: 'IMPRESSION 3D FDM',
+      desc: 'Superposition fine de couches pour tableaux d\'art, impression multi-filaments (Bambu Lab AMS) et pièces grand format.',
+      points: ['Tableaux multicouches', 'Multi-matériaux (PLA, PETG, ASA, TPU)', 'Impression haute précision']
     },
     {
-      id: 'assembler',
-      icon: <Cpu style={{ width: 22, height: 22, color: 'var(--accent-sage)' }} />,
-      tag: 'Mécatronique & Lab',
-      title: 'ASSEMBLER',
-      desc: 'Intégration d’électronique embarquée, servomoteurs asservis, microcontrôleurs Arduino/Raspberry Pi et mécanismes articulés.',
-      points: ['Robotique & prothèses bioniques', 'Bus CAN & Klipper', 'Électronique embarquée']
+      id: 'meca',
+      icon: <Wrench style={{ width: 22, height: 22, color: 'var(--accent-sage)' }} />,
+      tag: 'Atelier & Robotique',
+      title: 'MÉCANIQUE & ROBOTIQUE',
+      desc: 'Assemblage de prototypes articulés (bras robotique, main bionique) et gestion d\'un stock de pièces techniques pour l\'atelier.',
+      points: ['Systèmes articulés & tendons', 'Composants & pièces disponibles', 'Maintenance de machines 3D']
     }
   ];
 
   return (
     <section className="expertise-section">
       <div className="section-header-compact">
-        <span className="section-eyebrow">Studio & Savoir-faire</span>
-        <h2 className="section-heading">L'Approche Atelier : De la CAO à l'Objet Réel</h2>
+        <span className="section-eyebrow">Méthodes de travail</span>
+        <h2 className="section-heading">Comment je conçois et fabrique à l'Atelier</h2>
       </div>
 
       <div className="expertise-grid">

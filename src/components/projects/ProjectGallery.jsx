@@ -9,7 +9,7 @@ export default function ProjectGallery({ projects, onSelectProject, onOpenTikTok
   const counts = useMemo(() => {
     return {
       all: projects.length,
-      hueforge: projects.filter((p) => p.category === 'hueforge').length,
+      art: projects.filter((p) => p.category === 'art').length,
       robotics: projects.filter((p) => p.category === 'robotics').length,
       cosplay: projects.filter((p) => p.category === 'cosplay').length
     };
@@ -30,14 +30,14 @@ export default function ProjectGallery({ projects, onSelectProject, onOpenTikTok
   return (
     <section className="gallery-section">
       <div className="section-header-compact">
-        <span className="section-eyebrow">Portfolio Réalisations</span>
-        <h2 className="section-heading">Créations Artistiques & Projets Techniques</h2>
+        <span className="section-eyebrow">Mes Réalisations</span>
+        <h2 className="section-heading">Créations d'Atelier & Projets Réels</h2>
         <p className="section-subtext">
-          Chaque projet est conçu et imprimé dans mon atelier avec des profils de fabrication optimisés.
+          Chaque pièce a été modélisée ou imprimée dans mon atelier. Cliquez sur un projet pour voir les détails et la vidéo TikTok.
         </p>
       </div>
 
-      {/* Barre de recherche et filtres de catégories */}
+      {/* Filtres & Recherche */}
       <div className="filter-bar">
         <div className="search-input-wrapper">
           <Search className="search-icon-pos" style={{ width: 16, height: 16 }} />
@@ -45,7 +45,7 @@ export default function ProjectGallery({ projects, onSelectProject, onOpenTikTok
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Rechercher une création (Sauron, Deadpool, Bras robotique, One Piece, Gandalf...)"
+            placeholder="Rechercher parmi les réalisations (Sauron, Deadpool, Luffy, Bras robotique, Gandalf...)"
             className="search-input"
           />
           {searchTerm && (
@@ -73,15 +73,15 @@ export default function ProjectGallery({ projects, onSelectProject, onOpenTikTok
             className={`pill-btn ${selectedCategory === 'all' ? 'active' : ''}`}
           >
             <Layers style={{ width: 14, height: 14 }} />
-            <span>Tous les projets ({counts.all})</span>
+            <span>Toutes les réalisations ({counts.all})</span>
           </button>
 
           <button
-            onClick={() => setSelectedCategory('hueforge')}
-            className={`pill-btn ${selectedCategory === 'hueforge' ? 'active' : ''}`}
+            onClick={() => setSelectedCategory('art')}
+            className={`pill-btn ${selectedCategory === 'art' ? 'active' : ''}`}
           >
             <Palette style={{ width: 14, height: 14 }} />
-            <span>Tableaux & Hueforge ({counts.hueforge})</span>
+            <span>Tableaux & Art 3D ({counts.art})</span>
           </button>
 
           <button
@@ -97,16 +97,20 @@ export default function ProjectGallery({ projects, onSelectProject, onOpenTikTok
             className={`pill-btn ${selectedCategory === 'cosplay' ? 'active' : ''}`}
           >
             <Box style={{ width: 14, height: 14 }} />
-            <span>Cosplay, Casques & Sculptures ({counts.cosplay})</span>
+            <span>Cosplay & Sculptures ({counts.cosplay})</span>
           </button>
         </div>
       </div>
 
-      {/* Grille des Cartes Projets */}
+      {/* Grille */}
       {filteredProjects.length === 0 ? (
-        <div className="empty-results-box">
-          <p>Aucun projet ne correspond à votre recherche "{searchTerm}".</p>
-          <button onClick={() => { setSearchTerm(''); setSelectedCategory('all'); }} className="btn btn-secondary" style={{ marginTop: '0.85rem' }}>
+        <div className="empty-results-box" style={{ textAlign: 'center', padding: '3rem 1rem' }}>
+          <p style={{ color: 'var(--text-muted)' }}>Aucun projet ne correspond à "{searchTerm}".</p>
+          <button 
+            onClick={() => { setSearchTerm(''); setSelectedCategory('all'); }} 
+            className="btn btn-secondary" 
+            style={{ marginTop: '0.85rem' }}
+          >
             Réinitialiser les filtres
           </button>
         </div>

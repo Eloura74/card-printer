@@ -1,6 +1,6 @@
 import React from 'react';
 import { creatorProfile } from '../../data/projectsData';
-import { ExternalLink, Sparkles, Box } from 'lucide-react';
+import { ExternalLink, Box } from 'lucide-react';
 
 export default function Footer({ setActiveTab }) {
   return (
@@ -23,19 +23,19 @@ export default function Footer({ setActiveTab }) {
         <div className="footer-links">
           <div className="footer-col">
             <h4>Navigation</h4>
-            <button onClick={() => setActiveTab('gallery')}>Créations & Projets</button>
-            <button onClick={() => setActiveTab('customizer')}>Sur-Mesure & Hueforge</button>
+            <button onClick={() => setActiveTab('home')}>Accueil Studio</button>
+            <button onClick={() => setActiveTab('gallery')}>Mes Réalisations (15)</button>
             <button onClick={() => setActiveTab('workshop')}>Stock d'Atelier</button>
             <button onClick={() => setActiveTab('contact')}>Contact Direct</button>
           </div>
 
           <div className="footer-col">
-            <h4>Communauté</h4>
+            <h4>Réseaux</h4>
             <a href={creatorProfile.tiktokUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
               <span>TikTok {creatorProfile.tiktokHandle}</span>
               <ExternalLink style={{ width: 12, height: 12 }} />
             </a>
-            <span style={{ fontSize: '0.78rem', color: 'var(--text-faint)' }}>Bambu Lab • Voron • VZBot</span>
+            <span style={{ fontSize: '0.78rem', color: 'var(--text-faint)' }}>Bambu Lab • Voron • Fusion 360</span>
           </div>
         </div>
       </div>

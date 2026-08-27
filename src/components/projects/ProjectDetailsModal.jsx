@@ -3,23 +3,18 @@ import {
   X, 
   PlayCircle, 
   ExternalLink, 
-  Sparkles, 
   Camera, 
   Upload, 
   RotateCcw, 
   Image as ImageIcon,
-  CheckCircle2,
-  Wrench,
-  Cpu,
-  Layers,
-  ArrowRight
+  MessageSquare
 } from 'lucide-react';
 import { mediaService } from '../../services/mediaService';
 
 export default function ProjectDetailsModal({ 
   project, 
   onClose, 
-  onOpenCustomizerWithProject, 
+  onContactAboutProject, 
   onOpenTikTokModal 
 }) {
   const [isEditingImage, setIsEditingImage] = useState(false);
@@ -59,12 +54,12 @@ export default function ProjectDetailsModal({
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-card modal-project-details" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-card" onClick={(e) => e.stopPropagation()}>
         <button className="close-btn" onClick={onClose} title="Fermer">
           <X style={{ width: 18, height: 18 }} />
         </button>
 
-        {/* Média principal */}
+        {/* Photo principale */}
         <div className="project-detail-hero">
           <img
             src={currentImage}
@@ -74,10 +69,10 @@ export default function ProjectDetailsModal({
           <button
             onClick={() => setIsEditingImage(!isEditingImage)}
             className="card-image-replace-btn"
-            title="Modifier ou remplacer cette photo"
+            title="Remplacer cette photo"
           >
             <Camera style={{ width: 13, height: 13 }} />
-            <span>Modifier photo</span>
+            <span>Changer photo</span>
           </button>
         </div>
 
@@ -86,7 +81,7 @@ export default function ProjectDetailsModal({
           <div className="image-upload-box">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
               <h4 style={{ fontSize: '0.85rem', fontWeight: 700, color: '#ffffff', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                <Upload style={{ width: 14, height: 14 }} /> Personnaliser l'image de ce projet
+                <Upload style={{ width: 14, height: 14 }} /> Remplacer l'image
               </h4>
               <button
                 onClick={handleResetImage}
@@ -110,7 +105,7 @@ export default function ProjectDetailsModal({
                 className="btn btn-secondary"
                 style={{ width: '100%', padding: '0.55rem' }}
               >
-                <ImageIcon style={{ width: 14, height: 14 }} /> Importer une photo locale
+                <ImageIcon style={{ width: 14, height: 14 }} /> Importer un fichier depuis l'ordinateur
               </button>
 
               <div style={{ display: 'flex', gap: '0.4rem' }}>
@@ -118,32 +113,27 @@ export default function ProjectDetailsModal({
                   type="url"
                   value={customUrlInput}
                   onChange={(e) => setCustomUrlInput(e.target.value)}
-                  placeholder="Ou coller un lien direct d'image (https://...)"
+                  placeholder="Ou coller une URL d'image"
                   className="search-input"
                   style={{ padding: '0.45rem 0.75rem', fontSize: '0.78rem' }}
                 />
                 <button
                   onClick={handleUrlSave}
                   className="btn btn-primary"
-                  style={{ padding: '0.45rem 0.75rem', fontSize: '0.78rem', whiteSpace: 'nowrap' }}
+                  style={{ padding: '0.45rem 0.75rem', fontSize: '0.78rem' }}
                 >
-                  Appliquer
+                  Valider
                 </button>
               </div>
             </div>
           </div>
         )}
 
-        {/* En-tête de la fiche */}
-        <div style={{ display: 'flex', gap: '0.5rem', margin: '1rem 0 0.4rem 0', flexWrap: 'wrap' }}>
+        {/* Détails */}
+        <div style={{ display: 'flex', gap: '0.5rem', margin: '0.8rem 0 0.4rem 0' }}>
           <span className="card-tag terracotta">
-            {project.categoryLabel || project.category}
+            {project.categoryLabel}
           </span>
-          {project.technical?.printers && project.technical.printers.length > 0 && (
-            <span className="card-tag nordic">
-              Machine : {project.technical.printers.join(', ')}
-            </span>
-          )}
         </div>
 
         <h2 className="project-detail-title">{project.title}</h2>
@@ -151,64 +141,6 @@ export default function ProjectDetailsModal({
         <p className="project-detail-description">
           {project.description}
         </p>
-
-        {/* Spécifications techniques complètes */}
-        <div className="card-specs-box" style={{ margin: '1.25rem 0' }}>
-          {project.technical?.technique && (
-            <div className="spec-row">
-              <span className="spec-key">Technologie :</span>
-              <span className="spec-val">{project.technical.technique}</span>
-            </div>
-          )}
-          {project.technical?.layerHeight && (
-            <div className="spec-row">
-              <span className="spec-key">Hauteur de couche :</span>
-              <span className="spec-val">{project.technical.layerHeight}</span>
-            </div>
-          )}
-          {project.technical?.materials && project.technical.materials.length > 0 && (
-            <div className="spec-row">
-              <span className="spec-key">Matériaux & Filaments :</span>
-              <span className="spec-val">{project.technical.materials.join(' • ')}</span>
-            </div>
-          )}
-          {project.technical?.software && project.technical.software.length > 0 && (
-            <div className="spec-row">
-              <span className="spec-key">Logiciels CAO / Slicer :</span>
-              <span className="spec-val">{project.technical.software.join(' • ')}</span>
-            </div>
-          )}
-          {project.technical?.electronics && project.technical.electronics.length > 0 && (
-            <div className="spec-row">
-              <span className="spec-key">Électronique & Contrôle :</span>
-              <span className="spec-val" style={{ color: 'var(--accent-sage)' }}>
-                {project.technical.electronics.join(' • ')}
-              </span>
-            </div>
-          )}
-        </div>
-
-        {/* Processus de création (Timeline) si disponible */}
-        {Array.isArray(project.process) && project.process.length > 0 && (
-          <div className="project-timeline-box">
-            <h4 style={{ fontSize: '0.88rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <Layers style={{ width: 15, height: 15, color: 'var(--accent-terracotta)' }} />
-              Étapes de Conception & Fabrication
-            </h4>
-            <div className="timeline-steps">
-              {project.process.map((step, idx) => (
-                <div key={idx} className="timeline-step-item">
-                  <div className="timeline-step-bullet">{idx + 1}</div>
-                  <div>
-                    <span className="timeline-step-phase">{step.step}</span>
-                    <h5 className="timeline-step-title">{step.title}</h5>
-                    <p className="timeline-step-text">{step.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Tags */}
         <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', margin: '1rem 0' }}>
@@ -219,7 +151,7 @@ export default function ProjectDetailsModal({
           ))}
         </div>
 
-        {/* Actions du modal */}
+        {/* Actions */}
         <div className="modal-actions-bar">
           {project.tiktokUrl && (
             <button
@@ -232,11 +164,11 @@ export default function ProjectDetailsModal({
           )}
 
           <button
-            onClick={() => onOpenCustomizerWithProject(project)}
+            onClick={() => onContactAboutProject(project)}
             className="btn btn-primary"
           >
-            <Sparkles style={{ width: 15, height: 15 }} />
-            <span>Demander une création similaire</span>
+            <MessageSquare style={{ width: 15, height: 15 }} />
+            <span>Échanger sur ce projet</span>
           </button>
         </div>
       </div>

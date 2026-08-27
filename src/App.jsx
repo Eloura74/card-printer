@@ -6,31 +6,24 @@ import ExpertisePillars from './components/home/ExpertisePillars';
 import ProjectGallery from './components/projects/ProjectGallery';
 import ProjectDetailsModal from './components/projects/ProjectDetailsModal';
 import TikTokModal from './components/projects/TikTokModal';
-import CustomProjectWizard from './components/customizer/CustomProjectWizard';
 import WorkshopStock from './components/workshop/WorkshopStock';
 import ContactSection from './components/contact/ContactSection';
-import { projectsList, creatorProfile } from './data/projectsData';
+import { projectsList } from './data/projectsData';
 import { 
   Palette, 
-  Sparkles, 
   Wrench, 
   Send, 
   Home, 
-  Layers, 
-  Bot, 
-  Box, 
-  ChevronRight,
   ArrowRight
 } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('home'); // 'home', 'gallery', 'customizer', 'workshop', 'contact'
+  const [activeTab, setActiveTab] = useState('home'); // 'home', 'gallery', 'workshop', 'contact'
   const [selectedProject, setSelectedProject] = useState(null);
   const [tiktokModalProject, setTiktokModalProject] = useState(null);
+  const [contactSubjectProject, setContactSubjectProject] = useState(null);
   const [reservedStockItem, setReservedStockItem] = useState(null);
-  const [customizerPreselectedProject, setCustomizerPreselectedProject] = useState(null);
 
-  // Sélection d'un projet depuis le Hero ou la galerie
   const handleSelectProjectById = (projectId) => {
     const proj = projectsList.find((p) => p.id === projectId);
     if (proj) {
@@ -38,25 +31,25 @@ export default function App() {
     }
   };
 
-  // Passage vers le configurateur avec un projet en modèle
-  const handleOpenCustomizerWithProject = (project) => {
-    setCustomizerPreselectedProject(project);
+  const handleContactAboutProject = (project) => {
+    setContactSubjectProject(project);
+    setReservedStockItem(null);
     setSelectedProject(null);
-    setActiveTab('customizer');
+    setActiveTab('contact');
   };
 
-  // Réservation d'une pièce d'atelier
   const handleReserveStockItem = (item) => {
     setReservedStockItem(item);
+    setContactSubjectProject(null);
     setActiveTab('contact');
   };
 
   return (
     <div className="app-root">
-      {/* Header Global */}
+      {/* Header */}
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {/* Barre de navigation principale sous le header */}
+      {/* Barre de navigation 4 onglets */}
       <nav className="main-nav-bar">
         <div className="app-container main-nav-inner">
           <button
@@ -72,16 +65,8 @@ export default function App() {
             className={`nav-pill-btn ${activeTab === 'gallery' ? 'active' : ''}`}
           >
             <Palette style={{ width: 16, height: 16 }} />
-            <span>Créations & Projets</span>
+            <span>Mes Réalisations</span>
             <span className="nav-pill-badge">{projectsList.length}</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('customizer')}
-            className={`nav-pill-btn ${activeTab === 'customizer' ? 'active' : ''}`}
-          >
-            <Sparkles style={{ width: 16, height: 16, color: 'var(--accent-terracotta)' }} />
-            <span>Sur-Mesure & Hueforge</span>
           </button>
 
           <button
@@ -89,7 +74,7 @@ export default function App() {
             className={`nav-pill-btn ${activeTab === 'workshop' ? 'active' : ''}`}
           >
             <Wrench style={{ width: 16, height: 16 }} />
-            <span>Atelier & Pièces</span>
+            <span>Stock Atelier</span>
           </button>
 
           <button
@@ -97,7 +82,7 @@ export default function App() {
             className={`nav-pill-btn ${activeTab === 'contact' ? 'active' : ''}`}
           >
             <Send style={{ width: 16, height: 16 }} />
-            <span>Contact</span>
+            <span>Contact & Idées</span>
           </button>
         </div>
       </nav>
@@ -107,21 +92,19 @@ export default function App() {
         {/* VUE 1 : ACCUEIL STUDIO */}
         {activeTab === 'home' && (
           <div className="home-view-container">
-            {/* Hero Studio */}
             <HeroStudio
               setActiveTab={setActiveTab}
               onSelectFeaturedProject={handleSelectProjectById}
             />
 
-            {/* Piliers d'expertise */}
-            <ExpertisePillars setActiveTab={setActiveTab} />
+            <ExpertisePillars />
 
-            {/* Aperçu des Créations Phares */}
+            {/* Aperçu des Réalisations Réelles */}
             <section className="featured-creations-section">
               <div className="section-header-row">
                 <div>
-                  <span className="section-eyebrow">Dernières Réalisations</span>
-                  <h2 className="section-heading">Sélection de l'Atelier</h2>
+                  <span className="section-eyebrow">Atelier 3D</span>
+                  <h2 className="section-heading">Aperçu de mes Réalisations</h2>
                 </div>
                 <button
                   onClick={() => setActiveTab('gallery')}
@@ -133,7 +116,7 @@ export default function App() {
                 </button>
               </div>
 
-              <div className="portfolio-grid" style={{ marginBottom: '2rem' }}>
+              <div className="portfolio-grid" style={{ marginBottom: '2.5rem' }}>
                 {projectsList.slice(0, 6).map((project) => (
                   <div
                     key={project.id}
@@ -156,41 +139,19 @@ export default function App() {
                     </div>
 
                     <h3 className="card-title">{project.title}</h3>
-                    <p className="card-desc">{project.shortDescription}</p>
+                    <p className="card-desc">{project.description}</p>
 
                     <div className="card-footer">
                       <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                        {project.technical?.technique || 'Impression 3D'}
+                        Quentin Faber
                       </span>
                       <span className="card-action-link">
-                        <span>Voir la fiche</span>
+                        <span>Voir détails</span>
                         <ArrowRight style={{ width: 13, height: 13 }} />
                       </span>
                     </div>
                   </div>
                 ))}
-              </div>
-
-              {/* Bannière Call To Action Sur-mesure */}
-              <div className="custom-cta-banner card">
-                <div className="custom-cta-content">
-                  <span className="card-tag terracotta" style={{ marginBottom: '0.6rem' }}>
-                    <Sparkles style={{ width: 12, height: 12 }} /> Sur-Mesure
-                  </span>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', fontWeight: 800, color: '#ffffff' }}>
-                    Vous souhaitez un tableau Hueforge ou une pièce 3D personnalisée ?
-                  </h3>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', maxWidth: 620, margin: '0.5rem 0 1.25rem 0' }}>
-                    Importez votre propre photo ou décrivez votre besoin technique. Nous calibrons les couches et nuances de filaments ensemble.
-                  </p>
-                  <button
-                    onClick={() => setActiveTab('customizer')}
-                    className="btn btn-primary btn-lg"
-                  >
-                    <Sparkles style={{ width: 16, height: 16 }} />
-                    <span>Lancer le configurateur de projet</span>
-                  </button>
-                </div>
               </div>
             </section>
           </div>
@@ -205,29 +166,25 @@ export default function App() {
           />
         )}
 
-        {/* VUE 3 : SUR-MESURE & CONFIGURATEUR */}
-        {activeTab === 'customizer' && (
-          <CustomProjectWizard
-            preselectedProject={customizerPreselectedProject}
-            onComplete={() => setActiveTab('gallery')}
-          />
-        )}
-
-        {/* VUE 4 : ATELIER & STOCK */}
+        {/* VUE 3 : ATELIER & STOCK DE PIÈCES */}
         {activeTab === 'workshop' && (
           <WorkshopStock onReserveItem={handleReserveStockItem} />
         )}
 
-        {/* VUE 5 : CONTACT DIRECT */}
+        {/* VUE 4 : CONTACT DIRECT */}
         {activeTab === 'contact' && (
           <ContactSection
+            selectedProjectForContact={contactSubjectProject}
             reservedItem={reservedStockItem}
-            onClearReservedItem={() => setReservedStockItem(null)}
+            onClearContext={() => {
+              setContactSubjectProject(null);
+              setReservedStockItem(null);
+            }}
           />
         )}
       </main>
 
-      {/* Footer Global */}
+      {/* Footer */}
       <Footer setActiveTab={setActiveTab} />
 
       {/* Modale Détails Fiche Projet */}
@@ -235,7 +192,7 @@ export default function App() {
         <ProjectDetailsModal
           project={selectedProject}
           onClose={() => setSelectedProject(null)}
-          onOpenCustomizerWithProject={handleOpenCustomizerWithProject}
+          onContactAboutProject={handleContactAboutProject}
           onOpenTikTokModal={(p) => {
             setSelectedProject(null);
             setTiktokModalProject(p);
@@ -243,7 +200,7 @@ export default function App() {
         />
       )}
 
-      {/* Modale Vidéo TikTok Intégrée */}
+      {/* Modale Vidéo TikTok */}
       {tiktokModalProject && (
         <TikTokModal
           project={tiktokModalProject}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { PlayCircle, ArrowRight, Sparkles, Box, Cpu } from 'lucide-react';
+import { PlayCircle, ArrowRight } from 'lucide-react';
 import { mediaService } from '../../services/mediaService';
 
 export default function ProjectCard({ project, onSelectProject, onOpenTikTokModal }) {
@@ -7,7 +7,7 @@ export default function ProjectCard({ project, onSelectProject, onOpenTikTokModa
 
   const getCategoryBadgeClass = (cat) => {
     switch (cat) {
-      case 'hueforge':
+      case 'art':
         return 'terracotta';
       case 'robotics':
         return 'sage';
@@ -37,39 +37,10 @@ export default function ProjectCard({ project, onSelectProject, onOpenTikTokModa
               {project.categoryLabel || project.category}
             </span>
           </div>
-          {project.featured && (
-            <div style={{ position: 'absolute', top: '0.65rem', right: '0.65rem' }}>
-              <span className="card-tag amber" style={{ fontSize: '0.68rem', gap: '0.25rem' }}>
-                <Sparkles style={{ width: 10, height: 10 }} /> Pièce Phare
-              </span>
-            </div>
-          )}
         </div>
 
         <h3 className="card-title">{project.title}</h3>
-        <p className="card-desc">{project.shortDescription || project.description}</p>
-
-        {/* Détails techniques résumés */}
-        <div className="card-specs-box">
-          {project.technical?.technique && (
-            <div className="spec-row">
-              <span className="spec-key">Technique :</span>
-              <span className="spec-val">{project.technical.technique}</span>
-            </div>
-          )}
-          {project.technical?.layerHeight && (
-            <div className="spec-row">
-              <span className="spec-key">Précision :</span>
-              <span className="spec-val">{project.technical.layerHeight}</span>
-            </div>
-          )}
-          {project.technical?.materials && project.technical.materials.length > 0 && (
-            <div className="spec-row">
-              <span className="spec-key">Matière :</span>
-              <span className="spec-val">{project.technical.materials[0]}</span>
-            </div>
-          )}
-        </div>
+        <p className="card-desc">{project.description}</p>
       </div>
 
       <div className="card-footer">
@@ -81,7 +52,7 @@ export default function ProjectCard({ project, onSelectProject, onOpenTikTokModa
               e.stopPropagation();
               onOpenTikTokModal(project);
             }}
-            title="Voir la vidéo TikTok intégrée"
+            title="Voir la vidéo sur TikTok"
           >
             <PlayCircle style={{ width: 14, height: 14, color: 'var(--accent-terracotta)' }} />
             <span>Vidéo TikTok</span>

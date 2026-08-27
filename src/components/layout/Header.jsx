@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, ExternalLink, MessageSquare, Sparkles, Layers, Wrench } from 'lucide-react';
+import { Box, ExternalLink, MessageSquare } from 'lucide-react';
 import { creatorProfile } from '../../data/projectsData';
 
 export default function Header({ activeTab, setActiveTab }) {
@@ -42,15 +42,15 @@ export default function Header({ activeTab, setActiveTab }) {
             title="Voir mon profil complet sur TikTok"
           >
             <ExternalLink style={{ width: 14, height: 14 }} />
-            <span>TikTok</span>
+            <span>Mon TikTok</span>
           </a>
 
           <button
-            onClick={() => setActiveTab('customizer')}
+            onClick={() => setActiveTab('contact')}
             className="btn btn-primary"
           >
-            <Sparkles style={{ width: 14, height: 14 }} />
-            <span>Créer un Projet</span>
+            <MessageSquare style={{ width: 14, height: 14 }} />
+            <span>Contact & Idées</span>
           </button>
         </div>
       </div>
