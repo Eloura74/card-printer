@@ -7,18 +7,21 @@ import ProjectGallery from './components/projects/ProjectGallery';
 import ProjectDetailsModal from './components/projects/ProjectDetailsModal';
 import TikTokModal from './components/projects/TikTokModal';
 import WorkshopStock from './components/workshop/WorkshopStock';
+import VercelProjectsSection from './components/vercel/VercelProjectsSection';
 import ContactSection from './components/contact/ContactSection';
 import { projectsList } from './data/projectsData';
+import { vercelProjectsList } from './data/vercelProjectsData';
 import { 
   Palette, 
   Wrench, 
   Send, 
   Home, 
+  Cloud,
   ArrowRight
 } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('home'); // 'home', 'gallery', 'workshop', 'contact'
+  const [activeTab, setActiveTab] = useState('home'); // 'home', 'gallery', 'vercel', 'workshop', 'contact'
   const [selectedProject, setSelectedProject] = useState(null);
   const [tiktokModalProject, setTiktokModalProject] = useState(null);
   const [contactSubjectProject, setContactSubjectProject] = useState(null);
@@ -46,10 +49,10 @@ export default function App() {
 
   return (
     <div className="app-root">
-      {/* Header */}
+      {/* Header Global */}
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {/* Barre de navigation 4 onglets */}
+      {/* Barre de navigation principale avec Vercel */}
       <nav className="main-nav-bar">
         <div className="app-container main-nav-inner">
           <button
@@ -65,8 +68,19 @@ export default function App() {
             className={`nav-pill-btn ${activeTab === 'gallery' ? 'active' : ''}`}
           >
             <Palette style={{ width: 16, height: 16 }} />
-            <span>Mes Réalisations</span>
+            <span>Créations 3D</span>
             <span className="nav-pill-badge">{projectsList.length}</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('vercel')}
+            className={`nav-pill-btn ${activeTab === 'vercel' ? 'active' : ''}`}
+          >
+            <Cloud style={{ width: 16, height: 16, color: 'var(--accent-cyan)' }} />
+            <span>Projets Web & Vercel</span>
+            <span className="nav-pill-badge" style={{ color: 'var(--accent-indigo)', background: 'rgba(129, 140, 248, 0.15)' }}>
+              {vercelProjectsList.length}
+            </span>
           </button>
 
           <button
@@ -104,7 +118,7 @@ export default function App() {
               <div className="section-header-row">
                 <div>
                   <span className="section-eyebrow">Atelier 3D</span>
-                  <h2 className="section-heading">Aperçu de mes Réalisations</h2>
+                  <h2 className="section-heading">Aperçu de mes Réalisations 3D</h2>
                 </div>
                 <button
                   onClick={() => setActiveTab('gallery')}
@@ -132,7 +146,7 @@ export default function App() {
                         loading="lazy"
                       />
                       <div className="card-image-badge">
-                        <span className="card-tag terracotta">
+                        <span className="card-tag cyan">
                           {project.categoryLabel}
                         </span>
                       </div>
@@ -157,7 +171,7 @@ export default function App() {
           </div>
         )}
 
-        {/* VUE 2 : GALERIE DES 15 CRÉATIONS */}
+        {/* VUE 2 : GALERIE DES 15 CRÉATIONS 3D */}
         {activeTab === 'gallery' && (
           <ProjectGallery
             projects={projectsList}
@@ -166,12 +180,17 @@ export default function App() {
           />
         )}
 
-        {/* VUE 3 : ATELIER & STOCK DE PIÈCES */}
+        {/* VUE 3 : PROJETS WEB & VERCEL */}
+        {activeTab === 'vercel' && (
+          <VercelProjectsSection />
+        )}
+
+        {/* VUE 4 : ATELIER & STOCK DE PIÈCES */}
         {activeTab === 'workshop' && (
           <WorkshopStock onReserveItem={handleReserveStockItem} />
         )}
 
-        {/* VUE 4 : CONTACT DIRECT */}
+        {/* VUE 5 : CONTACT DIRECT */}
         {activeTab === 'contact' && (
           <ContactSection
             selectedProjectForContact={contactSubjectProject}
@@ -184,7 +203,7 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer */}
+      {/* Footer Global */}
       <Footer setActiveTab={setActiveTab} />
 
       {/* Modale Détails Fiche Projet */}
