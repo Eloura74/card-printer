@@ -94,6 +94,30 @@ body {
   padding: 0 1.25rem;
 }
 
+/* Bouton Retour Historique */
+.btn-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-back-link:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--accent-gold);
+  color: #ffffff;
+  transform: translateX(-3px);
+}
+
 /* Header */
 .app-header {
   position: sticky;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HeroStudio from './components/home/HeroStudio';
@@ -20,46 +20,136 @@ import {
   Home, 
   Cloud,
   ArrowRight,
+  ArrowLeft,
   Sparkles
 } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('home'); // 'home', 'gallery', 'vercel', 'workshop', 'contact'
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [tiktokModalProject, setTiktokModalProject] = useState(null);
+  const [activeTab, setActiveTabState] = useState('home'); // 'home', 'gallery', 'vercel', 'workshop', 'contact'
+  const [selectedProject, setSelectedProjectState] = useState(null);
+  const [tiktokModalProject, setTiktokModalProjectState] = useState(null);
   const [contactSubjectProject, setContactSubjectProject] = useState(null);
   const [reservedStockItem, setReservedStockItem] = useState(null);
+
+  // Synchronisation avec l'Historique du Navigateur (Gestion du Retour Arrière / PopState)
+  const changeTab = useCallback((newTab, push = true) => {
+    setActiveTabState(newTab);
+    setSelectedProjectState(null);
+    setTiktokModalProjectState(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (push && window.history) {
+      window.history.pushState({ tab: newTab, projectId: null, tiktokId: null }, '', `#${newTab}`);
+    }
+  }, []);
+
+  const openProjectModal = useCallback((project, push = true) => {
+    setSelectedProjectState(project);
+    setTiktokModalProjectState(null);
+    if (push && window.history) {
+      window.history.pushState({ tab: activeTab, projectId: project ? project.id : null, tiktokId: null }, '', `#project-${project.id}`);
+    }
+  }, [activeTab]);
+
+  const closeProjectModal = useCallback((push = true) => {
+    setSelectedProjectState(null);
+    if (push && window.history) {
+      window.history.pushState({ tab: activeTab, projectId: null, tiktokId: null }, '', `#${activeTab}`);
+    }
+  }, [activeTab]);
+
+  const openTikTokModal = useCallback((project, push = true) => {
+    setTiktokModalProjectState(project);
+    if (push && window.history) {
+      window.history.pushState({ tab: activeTab, projectId: null, tiktokId: project ? project.id : null }, '', `#tiktok-${project.id}`);
+    }
+  }, [activeTab]);
+
+  const closeTikTokModal = useCallback((push = true) => {
+    setTiktokModalProjectState(null);
+    if (push && window.history) {
+      window.history.pushState({ tab: activeTab, projectId: null, tiktokId: null }, '', `#${activeTab}`);
+    }
+  }, [activeTab]);
+
+  // Écouteur Popstate pour gérer les clics sur les boutons Précédent / Suivant du navigateur et smartphone
+  useEffect(() => {
+    // Initialisation état
+    if (window.location.hash) {
+      const hash = window.location.hash.replace('#', '');
+      if (['home', 'gallery', 'vercel', 'workshop', 'contact'].includes(hash)) {
+        setActiveTabState(hash);
+      } else if (hash.startsWith('project-')) {
+        const pId = hash.replace('project-', '');
+        const found = projectsList.find(p => p.id === pId);
+        if (found) {
+          setActiveTabState('gallery');
+          setSelectedProjectState(found);
+        }
+      }
+    } else {
+      window.history.replaceState({ tab: 'home', projectId: null, tiktokId: null }, '', '#home');
+    }
+
+    const handlePopState = (event) => {
+      const state = event.state;
+      if (state) {
+        if (state.tab) setActiveTabState(state.tab);
+        if (state.projectId) {
+          const proj = projectsList.find(p => p.id === state.projectId);
+          setSelectedProjectState(proj || null);
+        } else {
+          setSelectedProjectState(null);
+        }
+
+        if (state.tiktokId) {
+          const proj = projectsList.find(p => p.id === state.tiktokId);
+          setTiktokModalProjectState(proj || null);
+        } else {
+          setTiktokModalProjectState(null);
+        }
+      } else {
+        // Fallback accueil
+        setActiveTabState('home');
+        setSelectedProjectState(null);
+        setTiktokModalProjectState(null);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   const handleSelectProjectById = (projectId) => {
     const proj = projectsList.find((p) => p.id === projectId);
     if (proj) {
-      setSelectedProject(proj);
+      openProjectModal(proj);
     }
   };
 
   const handleContactAboutProject = (project) => {
     setContactSubjectProject(project);
     setReservedStockItem(null);
-    setSelectedProject(null);
-    setActiveTab('contact');
+    setSelectedProjectState(null);
+    changeTab('contact');
   };
 
   const handleReserveStockItem = (item) => {
     setReservedStockItem(item);
     setContactSubjectProject(null);
-    setActiveTab('contact');
+    changeTab('contact');
   };
 
   return (
     <div className="app-root">
       {/* Header Global */}
-      <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Header activeTab={activeTab} setActiveTab={(tab) => changeTab(tab)} />
 
       {/* Barre de navigation principale (Desktop) */}
       <nav className="main-nav-bar">
         <div className="app-container main-nav-inner">
           <button
-            onClick={() => setActiveTab('home')}
+            onClick={() => changeTab('home')}
             className={`nav-pill-btn ${activeTab === 'home' ? 'active' : ''}`}
           >
             <Home style={{ width: 16, height: 16 }} />
@@ -67,7 +157,7 @@ export default function App() {
           </button>
 
           <button
-            onClick={() => setActiveTab('gallery')}
+            onClick={() => changeTab('gallery')}
             className={`nav-pill-btn ${activeTab === 'gallery' ? 'active' : ''}`}
           >
             <Palette style={{ width: 16, height: 16 }} />
@@ -76,7 +166,7 @@ export default function App() {
           </button>
 
           <button
-            onClick={() => setActiveTab('vercel')}
+            onClick={() => changeTab('vercel')}
             className={`nav-pill-btn ${activeTab === 'vercel' ? 'active' : ''}`}
           >
             <Cloud style={{ width: 16, height: 16, color: 'var(--accent-gold)' }} />
@@ -87,7 +177,7 @@ export default function App() {
           </button>
 
           <button
-            onClick={() => setActiveTab('workshop')}
+            onClick={() => changeTab('workshop')}
             className={`nav-pill-btn ${activeTab === 'workshop' ? 'active' : ''}`}
           >
             <Wrench style={{ width: 16, height: 16 }} />
@@ -95,7 +185,7 @@ export default function App() {
           </button>
 
           <button
-            onClick={() => setActiveTab('contact')}
+            onClick={() => changeTab('contact')}
             className={`nav-pill-btn ${activeTab === 'contact' ? 'active' : ''}`}
           >
             <Send style={{ width: 16, height: 16 }} />
@@ -106,13 +196,26 @@ export default function App() {
 
       {/* Contenu Principal */}
       <main className="app-container main-content-wrapper">
+        {/* Barre de retour rapide si hors de la page d'accueil */}
+        {activeTab !== 'home' && (
+          <div style={{ marginBottom: '1.25rem' }}>
+            <button
+              onClick={() => changeTab('home')}
+              className="btn-back-link"
+            >
+              <ArrowLeft style={{ width: 15, height: 15 }} />
+              <span>Retour à l'Accueil Studio</span>
+            </button>
+          </div>
+        )}
+
         {/* VUE 1 : ACCUEIL STUDIO ULTRA DYNAMIQUE */}
         {activeTab === 'home' && (
           <div className="home-view-container">
             <HeroStudio
-              setActiveTab={setActiveTab}
+              setActiveTab={(tab) => changeTab(tab)}
               onSelectFeaturedProject={handleSelectProjectById}
-              onOpenTikTokModal={setTiktokModalProject}
+              onOpenTikTokModal={(p) => openTikTokModal(p)}
             />
 
             {/* Ruban Ticker Défilant Continu */}
@@ -120,7 +223,7 @@ export default function App() {
 
             {/* Univers Phares du Studio */}
             <WorkshopHighlights
-              setActiveTab={setActiveTab}
+              setActiveTab={(tab) => changeTab(tab)}
               onSelectProject={handleSelectProjectById}
             />
 
@@ -135,7 +238,7 @@ export default function App() {
                   <h2 className="section-heading">Pièces Récentes de l'Atelier</h2>
                 </div>
                 <button
-                  onClick={() => setActiveTab('gallery')}
+                  onClick={() => changeTab('gallery')}
                   className="btn btn-secondary"
                   style={{ gap: '0.4rem' }}
                 >
@@ -149,7 +252,7 @@ export default function App() {
                   <div
                     key={project.id}
                     className="card project-card-modern"
-                    onClick={() => setSelectedProject(project)}
+                    onClick={() => openProjectModal(project)}
                     style={{ cursor: 'pointer' }}
                   >
                     <div className="card-image-wrapper">
@@ -198,7 +301,7 @@ export default function App() {
 
                 <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
                   <button
-                    onClick={() => setActiveTab('contact')}
+                    onClick={() => changeTab('contact')}
                     className="btn btn-primary btn-lg"
                   >
                     <Send style={{ width: 16, height: 16 }} />
@@ -214,8 +317,8 @@ export default function App() {
         {activeTab === 'gallery' && (
           <ProjectGallery
             projects={projectsList}
-            onSelectProject={setSelectedProject}
-            onOpenTikTokModal={setTiktokModalProject}
+            onSelectProject={(p) => openProjectModal(p)}
+            onOpenTikTokModal={(p) => openTikTokModal(p)}
           />
         )}
 
@@ -243,17 +346,17 @@ export default function App() {
       </main>
 
       {/* Footer Global */}
-      <Footer setActiveTab={setActiveTab} />
+      <Footer setActiveTab={(tab) => changeTab(tab)} />
 
       {/* Modale Détails Fiche Projet */}
       {selectedProject && (
         <ProjectDetailsModal
           project={selectedProject}
-          onClose={() => setSelectedProject(null)}
+          onClose={() => closeProjectModal()}
           onContactAboutProject={handleContactAboutProject}
           onOpenTikTokModal={(p) => {
-            setSelectedProject(null);
-            setTiktokModalProject(p);
+            closeProjectModal(false);
+            openTikTokModal(p);
           }}
         />
       )}
@@ -262,7 +365,7 @@ export default function App() {
       {tiktokModalProject && (
         <TikTokModal
           project={tiktokModalProject}
-          onClose={() => setTiktokModalProject(null)}
+          onClose={() => closeTikTokModal()}
         />
       )}
     </div>

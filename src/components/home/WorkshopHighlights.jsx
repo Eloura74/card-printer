@@ -1,5 +1,5 @@
 import React from 'react';
-import { Palette, Bot, Box, Cloud, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { projectsList } from '../../data/projectsData';
 import { vercelProjectsList } from '../../data/vercelProjectsData';
 
@@ -39,8 +39,8 @@ export default function WorkshopHighlights({ setActiveTab, onSelectProject }) {
       id: 'vercel',
       title: "Développements Web & Cloud",
       subtitle: "19 Applications Vercel",
-      desc: "Applications interactives, gestionnaires d'inventaire, dashboards domotiques et plateformes React hébergées sur le Cloud.",
-      image: "/images/projects/dead-pool.png",
+      desc: "Applications interactives, gestionnaires d'inventaire, dashboards de métriques et plateformes React hébergées sur Vercel Cloud.",
+      image: "/images/projects/web-dev-cloud.jpg",
       tag: "Cloud & Dev",
       count: `${vercelProjectsList.length} Déploiements`,
       actionTab: 'vercel'
