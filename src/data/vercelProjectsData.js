@@ -1,6 +1,6 @@
 /**
  * Données réelles des déploiements Vercel de Quentin Faber (@Eloura74)
- * Source : Tableau de bord Vercel officiel (faberquentingmailcoms-projects)
+ * Intègre le contrôle des niveaux d'accès (Public vs Authentification Requise / Mode Lecture Seule).
  */
 
 export const vercelProfile = {
@@ -17,6 +17,7 @@ export const vercelProjectsList = [
     category: "tools",
     categoryLabel: "Atelier 3D & Vitrine",
     framework: "React • Vite",
+    accessType: "public", // 'public' | 'auth_required'
     domain: "card-printer-one.vercel.app",
     url: "https://card-printer-one.vercel.app",
     repoUrl: "https://github.com/Eloura74/card-printer",
@@ -29,11 +30,12 @@ export const vercelProjectsList = [
     category: "tools",
     categoryLabel: "Outils & Gestion",
     framework: "React • Location Overview",
+    accessType: "auth_required",
     domain: "inventory-sand-iota.vercel.app",
     url: "https://inventory-sand-iota.vercel.app",
     repoUrl: "https://github.com/Eloura74/Inventory",
-    description: "Application de traçabilité et gestion d'inventaire avec suivi d'emplacements et organisation de stock.",
-    tags: ["React", "Inventory", "Location Tracker"]
+    description: "Application de traçabilité et gestion d'inventaire avec suivi d'emplacements et organisation de stock d'atelier.",
+    tags: ["React", "Inventory", "Location Tracker", "Zone Sécurisée"]
   },
   {
     id: "lumi-stock",
@@ -41,11 +43,12 @@ export const vercelProjectsList = [
     category: "tools",
     categoryLabel: "Outils & Gestion",
     framework: "React • Modal Buy",
+    accessType: "auth_required",
     domain: "lumi-stock.vercel.app",
     url: "https://lumi-stock.vercel.app",
     repoUrl: "https://github.com/Eloura74/LumiStock",
-    description: "Interface de gestion de stock avec modules de redirection et gestion des réservations.",
-    tags: ["React", "E-Stock", "Modal UX"]
+    description: "Interface de gestion de stock avec modules de redirection et gestion des réservations atelier.",
+    tags: ["React", "E-Stock", "Modal UX", "Zone Sécurisée"]
   },
   {
     id: "stock-elec",
@@ -53,11 +56,12 @@ export const vercelProjectsList = [
     category: "tools",
     categoryLabel: "Outils & Gestion",
     framework: "Next.js / React",
+    accessType: "auth_required",
     domain: "stock-elec-beta.vercel.app",
     url: "https://stock-elec-beta.vercel.app",
     repoUrl: "https://github.com/Eloura74/StockElec",
-    description: "Application de gestion de pièces et composants électriques avec module comptabilité.",
-    tags: ["React", "Inventory", "Dashboard"]
+    description: "Application de gestion de pièces et composants avec module comptabilité et données atelier.",
+    tags: ["React", "Inventory", "Dashboard", "Admin"]
   },
   {
     id: "planning-photo",
@@ -65,11 +69,12 @@ export const vercelProjectsList = [
     category: "tools",
     categoryLabel: "Outils & Gestion",
     framework: "React • Dashboard Admin",
+    accessType: "auth_required",
     domain: "planning-photo.vercel.app",
     url: "https://planning-photo.vercel.app",
     repoUrl: "https://github.com/Eloura74/planningPhoto",
-    description: "Outil de gestion et planification de séances photo avec dashboard administrateur.",
-    tags: ["Planning", "Admin", "React"]
+    description: "Outil de gestion et planification de séances photo avec dashboard administrateur verrouillé.",
+    tags: ["Planning", "Admin", "React", "Zone Sécurisée"]
   },
   {
     id: "traker-dart",
@@ -77,6 +82,7 @@ export const vercelProjectsList = [
     category: "tools",
     categoryLabel: "Outils & Jeux",
     framework: "React • Web App",
+    accessType: "public",
     domain: "traker-dart.vercel.app",
     url: "https://traker-dart.vercel.app",
     repoUrl: "https://github.com/Eloura74/TrakerDart",
@@ -89,6 +95,7 @@ export const vercelProjectsList = [
     category: "data",
     categoryLabel: "Données & Météo",
     framework: "React • Leaflet / Maps API",
+    accessType: "public",
     domain: "meteo-maps.vercel.app",
     url: "https://meteo-maps.vercel.app",
     repoUrl: "https://github.com/Eloura74/MeteoMaps",
@@ -101,6 +108,7 @@ export const vercelProjectsList = [
     category: "food",
     categoryLabel: "Culinaire & Recettes",
     framework: "React • Modern CSS",
+    accessType: "public",
     domain: "let-s-cook-gold.vercel.app",
     url: "https://let-s-cook-gold.vercel.app",
     repoUrl: "https://github.com/Eloura74/Let-s-cook",
@@ -113,6 +121,7 @@ export const vercelProjectsList = [
     category: "food",
     categoryLabel: "Culinaire & Recettes",
     framework: "React • Responsive Hub",
+    accessType: "public",
     domain: "lets-cook-recipes.vercel.app",
     url: "https://lets-cook-recipes.vercel.app",
     repoUrl: "https://github.com/Eloura74/Lets-s_Cook_Recipes",
@@ -125,6 +134,7 @@ export const vercelProjectsList = [
     category: "food",
     categoryLabel: "Culinaire & Recettes",
     framework: "React 18 • Vite",
+    accessType: "public",
     domain: "letscookreactend.vercel.app",
     url: "https://letscookreactend.vercel.app",
     repoUrl: "https://github.com/Eloura74/lets-cook-v5",
@@ -137,10 +147,11 @@ export const vercelProjectsList = [
     category: "food",
     categoryLabel: "Culinaire & Terroir",
     framework: "Web App • Burger Navigation",
+    accessType: "public",
     domain: "wine-site-plum.vercel.app",
     url: "https://wine-site-plum.vercel.app",
     repoUrl: "https://github.com/Eloura74/WineSite",
-    description: "Site vitrine élégant dédié à la sélection et dégustation de vins et cépages d'exception.",
+    description: "Site vitrine dédié à la sélection et dégustation de vins et cépages d'exception.",
     tags: ["Wine", "Showcase", "CSS Design"]
   },
   {
@@ -149,6 +160,7 @@ export const vercelProjectsList = [
     category: "food",
     categoryLabel: "Culinaire & Terroir",
     framework: "React • Modèle Beer",
+    accessType: "public",
     domain: "beer-craft-ecf.vercel.app",
     url: "https://beer-craft-ecf.vercel.app",
     repoUrl: "https://github.com/Eloura74/BeerCraftEcf",
@@ -161,6 +173,7 @@ export const vercelProjectsList = [
     category: "portfolio",
     categoryLabel: "Portfolios & CV",
     framework: "Web • Docker Integration",
+    accessType: "public",
     domain: "portfolio-informatique.vercel.app",
     url: "https://portfolio-informatique.vercel.app",
     repoUrl: "https://github.com/Eloura74/Portfolio_Informatique",
@@ -173,6 +186,7 @@ export const vercelProjectsList = [
     category: "portfolio",
     categoryLabel: "Portfolios & CV",
     framework: "React • 3D Showcase",
+    accessType: "public",
     domain: "portfolio-topaz-zeta-53.vercel.app",
     url: "https://portfolio-topaz-zeta-53.vercel.app",
     repoUrl: "https://github.com/Eloura74/portfolio",
@@ -185,6 +199,7 @@ export const vercelProjectsList = [
     category: "portfolio",
     categoryLabel: "Loisirs & Tourisme",
     framework: "Web App • Exploration",
+    accessType: "public",
     domain: "city-fun.vercel.app",
     url: "https://city-fun.vercel.app",
     repoUrl: "https://github.com/Eloura74/CityFun",
@@ -197,11 +212,12 @@ export const vercelProjectsList = [
     category: "portfolio",
     categoryLabel: "Boutique & Déco",
     framework: "React • Admin Sarah",
+    accessType: "auth_required",
     domain: "au-jardin-de-la-princesse.vercel.app",
     url: "https://au-jardin-de-la-princesse.vercel.app",
     repoUrl: "https://github.com/Eloura74/Au_Jardin_De_La_Princesse",
     description: "Site vitrine et espace d'administration pour compositions florales et créations artisanales.",
-    tags: ["Showcase", "Admin Panel", "React"]
+    tags: ["Showcase", "Admin Panel", "React", "Zone Sécurisée"]
   },
   {
     id: "to-do-list",
@@ -209,6 +225,7 @@ export const vercelProjectsList = [
     category: "tools",
     categoryLabel: "Outils & Gestion",
     framework: "CSS v3 • Task Manager",
+    accessType: "public",
     domain: "to-do-list-roan-mu.vercel.app",
     url: "https://to-do-list-roan-mu.vercel.app",
     repoUrl: "https://github.com/Eloura74/To-Do-List",
@@ -221,6 +238,7 @@ export const vercelProjectsList = [
     category: "tools",
     categoryLabel: "Outils & Gestion",
     framework: "CSS v3 • Theme Edition",
+    accessType: "public",
     domain: "to-do-list-2-pink.vercel.app",
     url: "https://to-do-list-2-pink.vercel.app",
     repoUrl: "https://github.com/Eloura74/To-Do-List",
@@ -233,6 +251,7 @@ export const vercelProjectsList = [
     category: "data",
     categoryLabel: "Données & Normes",
     framework: "Web App • Guide Technique",
+    accessType: "public",
     domain: "nfc-15-100.vercel.app",
     url: "https://nfc-15-100.vercel.app",
     repoUrl: "https://github.com/Eloura74/NFC15-100",

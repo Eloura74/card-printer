@@ -1,10 +1,28 @@
 import React, { useState, useMemo } from 'react';
-import { ExternalLink, Globe, Terminal, CheckCircle2, Cloud, Sparkles, Layers, Code, GitBranch, Search, X } from 'lucide-react';
+import { 
+  ExternalLink, 
+  Globe, 
+  Terminal, 
+  CheckCircle2, 
+  Cloud, 
+  Sparkles, 
+  Layers, 
+  Code, 
+  GitBranch, 
+  Search, 
+  X, 
+  Lock, 
+  ShieldCheck, 
+  ShieldAlert, 
+  Key,
+  Eye
+} from 'lucide-react';
 import { vercelProfile, vercelProjectsList } from '../../data/vercelProjectsData';
 
-export default function VercelProjectsSection() {
+export default function VercelProjectsSection({ onOpenContactWithApp }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [securityModalProject, setSecurityModalProject] = useState(null);
 
   const counts = useMemo(() => {
     return {
@@ -29,13 +47,20 @@ export default function VercelProjectsSection() {
     });
   }, [selectedCategory, searchTerm]);
 
+  const handleProjectClick = (project, e) => {
+    if (project.accessType === 'auth_required') {
+      e.preventDefault();
+      setSecurityModalProject(project);
+    }
+  };
+
   return (
     <section className="vercel-section">
       <div className="section-header-compact">
         <span className="section-eyebrow">Cloud & Déploiements Web</span>
         <h2 className="section-heading">Mes Développements & Projets Vercel</h2>
         <p className="section-subtext">
-          Retrouvez l'ensemble de mes applications web, outils de gestion et plateformes déployées sur mon compte Vercel Cloud.
+          Consultez mes applications web déployées. Les outils de gestion atelier intègrent une protection en écriture.
         </p>
       </div>
 
@@ -53,7 +78,7 @@ export default function VercelProjectsSection() {
                 {vercelProfile.accountName}
               </h3>
               <span className="card-tag cyan">
-                <Cloud style={{ width: 12, height: 12 }} /> {vercelProjectsList.length} Déploiements Actifs
+                <Cloud style={{ width: 12, height: 12 }} /> {vercelProjectsList.length} Déploiements
               </span>
             </div>
             <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', marginTop: '0.35rem', maxWidth: 680 }}>
@@ -92,7 +117,7 @@ export default function VercelProjectsSection() {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Rechercher un projet Vercel (Inventory, LumiStock, Let's Cook, Météo Maps, To-Do, Dart...)"
+            placeholder="Rechercher un projet (Inventory, LumiStock, StockElec, Let's Cook, Météo, To-Do...)"
             className="search-input"
           />
           {searchTerm && (
@@ -189,9 +214,15 @@ export default function VercelProjectsSection() {
                     </div>
                   </div>
 
-                  <span className="card-tag sage" style={{ fontSize: '0.7rem' }}>
-                    <CheckCircle2 style={{ width: 11, height: 11 }} /> En ligne
-                  </span>
+                  {project.accessType === 'auth_required' ? (
+                    <span className="card-tag amber" title="Consultation libre • Modifications réservées aux utilisateurs enregistrés">
+                      <Lock style={{ width: 11, height: 11 }} /> Données Protégées
+                    </span>
+                  ) : (
+                    <span className="card-tag sage">
+                      <CheckCircle2 style={{ width: 11, height: 11 }} /> Accès Public
+                    </span>
+                  )}
                 </div>
 
                 <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: '1rem 0' }}>
@@ -204,8 +235,10 @@ export default function VercelProjectsSection() {
                     <span className="spec-val" style={{ color: 'var(--accent-gold)' }}>{project.domain}</span>
                   </div>
                   <div className="spec-row">
-                    <span className="spec-key">Hébergement :</span>
-                    <span className="spec-val">Vercel Edge Network</span>
+                    <span className="spec-key">Contrôle d'accès :</span>
+                    <span className="spec-val" style={{ color: project.accessType === 'auth_required' ? '#fbbf24' : 'var(--accent-sage)' }}>
+                      {project.accessType === 'auth_required' ? 'Lecture Seule / Login requis' : 'Accès libre complet'}
+                    </span>
                   </div>
                 </div>
 
@@ -219,16 +252,27 @@ export default function VercelProjectsSection() {
               </div>
 
               <div className="card-footer">
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-secondary"
-                  style={{ fontSize: '0.78rem', padding: '0.45rem 0.85rem' }}
-                >
-                  <Globe style={{ width: 13, height: 13, color: 'var(--accent-gold)' }} />
-                  <span>Visiter le site</span>
-                </a>
+                {project.accessType === 'auth_required' ? (
+                  <button
+                    onClick={(e) => handleProjectClick(project, e)}
+                    className="btn btn-secondary"
+                    style={{ fontSize: '0.78rem', padding: '0.45rem 0.85rem' }}
+                  >
+                    <Eye style={{ width: 13, height: 13, color: '#fbbf24' }} />
+                    <span>Ouvrir l'application (Protégée)</span>
+                  </button>
+                ) : (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-secondary"
+                    style={{ fontSize: '0.78rem', padding: '0.45rem 0.85rem' }}
+                  >
+                    <Globe style={{ width: 13, height: 13, color: 'var(--accent-gold)' }} />
+                    <span>Visiter le site</span>
+                  </a>
+                )}
 
                 {project.repoUrl && (
                   <a
@@ -244,6 +288,67 @@ export default function VercelProjectsSection() {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Modal de Sécurité & Avertissement pour les Sites Sensibles */}
+      {securityModalProject && (
+        <div className="modal-overlay" onClick={() => setSecurityModalProject(null)}>
+          <div className="modal-card" onClick={(e) => e.stopPropagation()} style={{ maxWidth: 520 }}>
+            <button className="close-btn" onClick={() => setSecurityModalProject(null)} style={{ position: 'absolute', top: '1rem', right: '1rem' }}>
+              <X style={{ width: 18, height: 18 }} />
+            </button>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.15rem' }}>
+              <div style={{ width: 44, height: 44, borderRadius: 'var(--radius-sm)', background: 'rgba(251, 191, 36, 0.15)', border: '1px solid rgba(251, 191, 36, 0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fbbf24', flexShrink: 0 }}>
+                <ShieldAlert style={{ width: 24, height: 24 }} />
+              </div>
+              <div>
+                <span style={{ fontSize: '0.72rem', color: '#fbbf24', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
+                  Espace d'Atelier Sécurisé
+                </span>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 800, color: '#ffffff' }}>
+                  {securityModalProject.title}
+                </h3>
+              </div>
+            </div>
+
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.65, marginBottom: '1.25rem' }}>
+              Cette application gère des <strong>données d'atelier, de stock ou des fonctions d'administration réelles</strong>.  
+              La consultation publique est autorisée, mais les actions d'écriture, de modification ou de suppression nécessitent un <strong>compte utilisateur enregistré et authentifié</strong>.
+            </p>
+
+            <div className="card-specs-box" style={{ marginBottom: '1.5rem' }}>
+              <div className="spec-row">
+                <span className="spec-key">Domaine sécurisé :</span>
+                <span className="spec-val" style={{ color: 'var(--accent-gold)' }}>{securityModalProject.domain}</span>
+              </div>
+              <div className="spec-row">
+                <span className="spec-key">Mode d'accès :</span>
+                <span className="spec-val" style={{ color: '#fbbf24' }}>Lecture Seule / Connexion Admin requise</span>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
+              <button
+                onClick={() => setSecurityModalProject(null)}
+                className="btn btn-secondary"
+              >
+                Annuler
+              </button>
+
+              <a
+                href={securityModalProject.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+                onClick={() => setSecurityModalProject(null)}
+              >
+                <Globe style={{ width: 14, height: 14 }} />
+                <span>Accéder à l'application</span>
+              </a>
+            </div>
+          </div>
         </div>
       )}
     </section>
