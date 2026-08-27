@@ -1,50 +1,69 @@
 import React from 'react';
-import { ArrowRight, Wrench, Sparkles } from 'lucide-react';
-import { creatorProfile } from '../../data/projectsData';
+import { ArrowRight, Wrench, Sparkles, Box, CheckCircle2, PlayCircle, Eye } from 'lucide-react';
+import { creatorProfile, projectsList } from '../../data/projectsData';
+import { vercelProjectsList } from '../../data/vercelProjectsData';
 import HeroShowcaseCarousel from './HeroShowcaseCarousel';
 
 export default function HeroStudio({ setActiveTab, onSelectFeaturedProject, onOpenTikTokModal }) {
   return (
     <section className="hero-studio">
       <div className="hero-studio-content">
-        <div className="hero-badge">
-          <Sparkles style={{ width: 12, height: 12, color: 'var(--accent-gold)' }} />
-          <span>Atelier 3D • Quentin Faber (@quentinfaber)</span>
+        {/* Statut Live d'Atelier */}
+        <div className="hero-status-pill">
+          <span className="pulse-dot" />
+          <span>Atelier de Conception & Impression 3D • Quentin Faber</span>
         </div>
 
         <h1 className="hero-main-title">
-          Conception & Fabrication <br />
-          <span className="hero-title-highlight">Impression 3D Réelle</span>
+          De l'idée numérique <br />
+          <span className="hero-title-highlight">à l'objet réel.</span>
         </h1>
 
         <p className="hero-main-desc">
-          Bienvenue dans mon atelier 3D. Découvrez mes <strong>réalisations concrètes</strong> : tableaux d'art multicouches, modélisations sous Fusion 360, mécanique robotique et pièces d'atelier.
+          Studio personnel de modélisation CAO, tableaux d'art multicouches haute précision, mécanismes robotiques et pièces d'atelier.
         </p>
+
+        {/* Chiffres clés accrocheurs en un coup d'œil */}
+        <div className="hero-quick-metrics">
+          <div className="quick-metric-item">
+            <strong>{projectsList.length}</strong>
+            <span>Créations 3D</span>
+          </div>
+          <div className="quick-metric-divider" />
+          <div className="quick-metric-item">
+            <strong>{vercelProjectsList.length}</strong>
+            <span>Apps Déployées</span>
+          </div>
+          <div className="quick-metric-divider" />
+          <div className="quick-metric-item">
+            <strong style={{ color: 'var(--accent-gold)' }}>0.08mm</strong>
+            <span>Précision Optique</span>
+          </div>
+        </div>
 
         <div className="hero-cta-group">
           <button
             onClick={() => setActiveTab('gallery')}
             className="btn btn-primary btn-lg"
           >
-            <span>Voir mes 15 créations</span>
+            <span>Explorer les créations 3D</span>
             <ArrowRight style={{ width: 16, height: 16 }} />
           </button>
 
           <button
-            onClick={() => setActiveTab('workshop')}
+            onClick={() => setActiveTab('vercel')}
             className="btn btn-secondary btn-lg"
           >
-            <Wrench style={{ width: 15, height: 15, color: 'var(--accent-gold)' }} />
-            <span>Stock de pièces d'atelier</span>
+            <Eye style={{ width: 15, height: 15, color: 'var(--accent-gold)' }} />
+            <span>Voir mes 19 projets Web</span>
           </button>
         </div>
 
         <div className="hero-tags-strip">
-          {creatorProfile.workshop.map((item, idx) => (
-            <span key={idx} className="hero-pill">
-              {item}
-            </span>
-          ))}
+          <span className="hero-pill">Fusion 360 CAO</span>
+          <span className="hero-pill">Bambu Lab AMS Multicouleur</span>
+          <span className="hero-pill">VZBot High-Speed</span>
+          <span className="hero-pill">Robotique & Mécatronique</span>
         </div>
       </div>
 

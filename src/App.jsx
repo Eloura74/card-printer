@@ -3,6 +3,7 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HeroStudio from './components/home/HeroStudio';
 import AtelierMarqueeTicker from './components/home/AtelierMarqueeTicker';
+import WorkshopHighlights from './components/home/WorkshopHighlights';
 import ExpertisePillars from './components/home/ExpertisePillars';
 import ProjectGallery from './components/projects/ProjectGallery';
 import ProjectDetailsModal from './components/projects/ProjectDetailsModal';
@@ -18,7 +19,8 @@ import {
   Send, 
   Home, 
   Cloud,
-  ArrowRight
+  ArrowRight,
+  Sparkles
 } from 'lucide-react';
 
 export default function App() {
@@ -104,7 +106,7 @@ export default function App() {
 
       {/* Contenu Principal */}
       <main className="app-container main-content-wrapper">
-        {/* VUE 1 : ACCUEIL STUDIO */}
+        {/* VUE 1 : ACCUEIL STUDIO ULTRA DYNAMIQUE */}
         {activeTab === 'home' && (
           <div className="home-view-container">
             <HeroStudio
@@ -116,21 +118,28 @@ export default function App() {
             {/* Ruban Ticker Défilant Continu */}
             <AtelierMarqueeTicker />
 
+            {/* Univers Phares du Studio */}
+            <WorkshopHighlights
+              setActiveTab={setActiveTab}
+              onSelectProject={handleSelectProjectById}
+            />
+
+            {/* Méthodes & Piliers d'Atelier */}
             <ExpertisePillars />
 
-            {/* Aperçu des Réalisations Réelles */}
+            {/* Sélection Réalisations Phares */}
             <section className="featured-creations-section">
               <div className="section-header-row">
                 <div>
-                  <span className="section-eyebrow">Atelier 3D</span>
-                  <h2 className="section-heading">Aperçu de mes Réalisations 3D</h2>
+                  <span className="section-eyebrow">Dernières Créations</span>
+                  <h2 className="section-heading">Pièces Récentes de l'Atelier</h2>
                 </div>
                 <button
                   onClick={() => setActiveTab('gallery')}
                   className="btn btn-secondary"
                   style={{ gap: '0.4rem' }}
                 >
-                  <span>Voir les 15 créations</span>
+                  <span>Voir toute la galerie (15)</span>
                   <ArrowRight style={{ width: 15, height: 15 }} />
                 </button>
               </div>
@@ -171,6 +180,31 @@ export default function App() {
                     </div>
                   </div>
                 ))}
+              </div>
+
+              {/* Bannière Call To Action Accrocheuse */}
+              <div className="card home-cta-banner">
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', maxWidth: 640 }}>
+                  <span className="card-tag cyan" style={{ width: 'fit-content' }}>
+                    <Sparkles style={{ width: 12, height: 12 }} /> Échange & Projets
+                  </span>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', fontWeight: 800, color: '#ffffff' }}>
+                    Vous avez une idée de création 3D ou besoin d'une pièce technique ?
+                  </h3>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                    Discutons ensemble de la modélisation sous Fusion 360, des matériaux adaptés et des étapes de fabrication.
+                  </p>
+                </div>
+
+                <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                  <button
+                    onClick={() => setActiveTab('contact')}
+                    className="btn btn-primary btn-lg"
+                  >
+                    <Send style={{ width: 16, height: 16 }} />
+                    <span>Me contacter directement</span>
+                  </button>
+                </div>
               </div>
             </section>
           </div>
