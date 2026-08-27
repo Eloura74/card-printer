@@ -1,0 +1,367 @@
+{
+  "inventory_name": "Stock impression 3D - Quentin",
+  "generated_from": "Inventaires déjà communiqués dans les conversations",
+  "generated_date": "2026-08-27",
+  "rules": {
+    "unknown_quantity": null,
+    "note": "Les quantités non explicitement données sont laissées à null. Aucun élément ou nombre n'est inventé."
+  },
+  "locations": [
+    {
+      "location": "Tiroirs du bas du salon",
+      "items": [
+        {
+          "id": "item-1",
+          "name": "Ventilateur GDS Time pour fan RSCS VZBot",
+          "category": "ventilation",
+          "brand_or_system": "VZBot / GDS Time",
+          "quantity": 1,
+          "quantity_text": "1",
+          "condition": null
+        },
+        {
+          "id": "item-2",
+          "name": "Capteurs Omron Q5",
+          "category": "capteurs",
+          "brand_or_system": "Omron",
+          "quantity": null,
+          "quantity_text": "quantité non précisée",
+          "condition": null
+        },
+        {
+          "id": "item-3",
+          "name": "Extrudeurs divers",
+          "category": "extrusion",
+          "brand_or_system": null,
+          "quantity": null,
+          "quantity_text": "divers",
+          "condition": null
+        },
+        {
+          "id": "item-4",
+          "name": "Engrenages d'extrudeurs",
+          "category": "extrusion",
+          "brand_or_system": null,
+          "quantity": null,
+          "quantity_text": "quantité non précisée",
+          "condition": null
+        },
+        {
+          "id": "item-5",
+          "name": "Hotend Goliath",
+          "category": "hotend",
+          "brand_or_system": "Goliath",
+          "quantity": 2,
+          "quantity_text": "2",
+          "condition": null
+        },
+        {
+          "id": "item-6",
+          "name": "Kits Klicky Probe",
+          "category": "probe",
+          "brand_or_system": "Klicky Probe",
+          "quantity": 2,
+          "quantity_text": "2 kits",
+          "condition": null
+        },
+        {
+          "id": "item-7",
+          "name": "Klicky Probe",
+          "category": "probe",
+          "brand_or_system": "Klicky Probe",
+          "quantity": 2,
+          "quantity_text": "2",
+          "condition": null,
+          "note": "Entrée séparée telle qu'elle avait été inventoriée en plus des 2 kits."
+        },
+        {
+          "id": "item-8",
+          "name": "Hub PTFE Bambu",
+          "category": "filament_ptfe",
+          "brand_or_system": "Bambu Lab",
+          "quantity": 1,
+          "quantity_text": "1",
+          "condition": null
+        },
+        {
+          "id": "item-9",
+          "name": "Hub PTFE sans ressort",
+          "category": "filament_ptfe",
+          "brand_or_system": null,
+          "quantity": 1,
+          "quantity_text": "1",
+          "condition": "sans ressort"
+        },
+        {
+          "id": "item-10",
+          "name": "Buse Bambu 0.4 mm usagée",
+          "category": "buse",
+          "brand_or_system": "Bambu Lab",
+          "diameter_mm": 0.4,
+          "quantity": 4,
+          "quantity_text": "4",
+          "condition": "usagée"
+        },
+        {
+          "id": "item-11",
+          "name": "Buse Bambu 0.4 mm",
+          "category": "buse",
+          "brand_or_system": "Bambu Lab",
+          "diameter_mm": 0.4,
+          "quantity": 1,
+          "quantity_text": "1",
+          "condition": null
+        },
+        {
+          "id": "item-12",
+          "name": "Buse Bambu 0.6 mm",
+          "category": "buse",
+          "brand_or_system": "Bambu Lab",
+          "diameter_mm": 0.6,
+          "quantity": null,
+          "quantity_text": "quantité non précisée",
+          "condition": null
+        },
+        {
+          "id": "item-13",
+          "name": "Buse Bambu 0.8 mm",
+          "category": "buse",
+          "brand_or_system": "Bambu Lab",
+          "diameter_mm": 0.8,
+          "quantity": null,
+          "quantity_text": "quantité non précisée",
+          "condition": null
+        },
+        {
+          "id": "item-14",
+          "name": "CAN bus expander",
+          "category": "electronique_can",
+          "brand_or_system": "CAN bus",
+          "quantity": 1,
+          "quantity_text": "1",
+          "condition": null
+        },
+        {
+          "id": "item-15",
+          "name": "Cartes / modules CAN bus",
+          "category": "electronique_can",
+          "brand_or_system": "CAN bus",
+          "quantity": null,
+          "quantity_text": "plusieurs",
+          "condition": null
+        },
+        {
+          "id": "item-16",
+          "name": "Cartes électroniques diverses",
+          "category": "electronique",
+          "brand_or_system": null,
+          "quantity": null,
+          "quantity_text": "diverses",
+          "condition": null
+        },
+        {
+          "id": "item-17",
+          "name": "Boîte de cartes Arduino",
+          "category": "electronique",
+          "brand_or_system": "Arduino",
+          "quantity": null,
+          "quantity_text": "1 boîte, nombre de cartes non précisé",
+          "condition": null
+        },
+        {
+          "id": "item-18",
+          "name": "Boîte de composants Arduino divers",
+          "category": "electronique",
+          "brand_or_system": "Arduino",
+          "quantity": null,
+          "quantity_text": "1 boîte, contenu divers",
+          "condition": null
+        },
+        {
+          "id": "item-19",
+          "name": "Câblage divers",
+          "category": "cablage",
+          "brand_or_system": null,
+          "quantity": null,
+          "quantity_text": "divers",
+          "condition": null
+        },
+        {
+          "id": "item-20",
+          "name": "Câble électronique 0.8 mm",
+          "category": "cablage",
+          "brand_or_system": null,
+          "diameter_or_section_text": "0.8 mm",
+          "quantity": null,
+          "quantity_text": "quantité non précisée",
+          "condition": null
+        },
+        {
+          "id": "item-21",
+          "name": "Câbles / connecteurs Dupont",
+          "category": "connectique",
+          "brand_or_system": "Dupont",
+          "quantity": null,
+          "quantity_text": "quantité non précisée",
+          "condition": null
+        },
+        {
+          "id": "item-22",
+          "name": "Boîte de connecteurs Dupont",
+          "category": "connectique",
+          "brand_or_system": "Dupont",
+          "quantity": null,
+          "quantity_text": "1 boîte",
+          "condition": null
+        },
+        {
+          "id": "item-23",
+          "name": "Autre boîte de connecteurs Dupont",
+          "category": "connectique",
+          "brand_or_system": "Dupont",
+          "quantity": null,
+          "quantity_text": "1 boîte",
+          "condition": null
+        },
+        {
+          "id": "item-24",
+          "name": "Connecteurs borniers",
+          "category": "connectique",
+          "brand_or_system": null,
+          "quantity": null,
+          "quantity_text": "quantité non précisée",
+          "condition": null
+        },
+        {
+          "id": "item-25",
+          "name": "Boîte de serre-câbles, cosses et gaine thermorétractable",
+          "category": "cablage_connectique",
+          "brand_or_system": null,
+          "quantity": null,
+          "quantity_text": "1 boîte",
+          "condition": null
+        },
+        {
+          "id": "item-26",
+          "name": "Boîte de condensateurs céramiques",
+          "category": "electronique",
+          "brand_or_system": null,
+          "quantity": null,
+          "quantity_text": "1 boîte",
+          "condition": null
+        },
+        {
+          "id": "item-27",
+          "name": "Convertisseur CC/DC",
+          "category": "alimentation_electronique",
+          "brand_or_system": null,
+          "quantity": 1,
+          "quantity_text": "1",
+          "condition": null
+        },
+        {
+          "id": "item-28",
+          "name": "Alimentation DC 12 V 60 W / 100 W",
+          "category": "alimentation_electronique",
+          "brand_or_system": null,
+          "voltage_v": 12,
+          "power_text": "60 W / 100 W",
+          "quantity": null,
+          "quantity_text": "quantité non précisée",
+          "condition": null
+        },
+        {
+          "id": "item-29",
+          "name": "Boîte de ressorts",
+          "category": "mecanique",
+          "brand_or_system": null,
+          "quantity": null,
+          "quantity_text": "1 boîte",
+          "condition": null
+        },
+        {
+          "id": "item-30",
+          "name": "Aimants",
+          "category": "mecanique",
+          "brand_or_system": null,
+          "quantity": null,
+          "quantity_text": "quantité non précisée",
+          "condition": null
+        },
+        {
+          "id": "item-31",
+          "name": "Vis spéciales",
+          "category": "visserie",
+          "brand_or_system": null,
+          "quantity": null,
+          "quantity_text": "quantité non précisée",
+          "condition": null
+        },
+        {
+          "id": "item-32",
+          "name": "Visserie diverse",
+          "category": "visserie",
+          "brand_or_system": null,
+          "quantity": null,
+          "quantity_text": "diverse",
+          "condition": null
+        },
+        {
+          "id": "item-33",
+          "name": "Boîte de rondelles",
+          "category": "visserie",
+          "brand_or_system": null,
+          "quantity": null,
+          "quantity_text": "1 boîte",
+          "condition": null
+        },
+        {
+          "id": "item-34",
+          "name": "Boîte de rondelles / vis / cosses",
+          "category": "visserie_connectique",
+          "brand_or_system": null,
+          "quantity": null,
+          "quantity_text": "1 boîte",
+          "condition": null
+        },
+        {
+          "id": "item-35",
+          "name": "Hydromètre",
+          "category": "mesure_stockage_filament",
+          "brand_or_system": null,
+          "quantity": 1,
+          "quantity_text": "1",
+          "condition": null
+        },
+        {
+          "id": "item-36",
+          "name": "Pastille RFID",
+          "category": "electronique_rfid",
+          "brand_or_system": "RFID",
+          "quantity": null,
+          "quantity_text": "quantité non précisée",
+          "condition": null
+        },
+        {
+          "id": "item-37",
+          "name": "Résistance / plaque électronique",
+          "category": "electronique",
+          "brand_or_system": null,
+          "quantity": null,
+          "quantity_text": "quantité non précisée",
+          "condition": null
+        }
+      ]
+    }
+  ],
+  "excluded_as_not_clearly_3d_printing_related": [
+    "Télécommande",
+    "Tracker GPS"
+  ],
+  "summary": {
+    "location_count": 1,
+    "item_types_count": 37,
+    "known_quantity_entries": 11,
+    "unknown_or_non_numeric_quantity_entries": 26
+  }
+}

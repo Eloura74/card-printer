@@ -1,0 +1,252 @@
+{
+  "creator": {
+    "name": "FoxtrottQuebec 3D Design",
+    "subtitle": "Impression 3D, modélisation & conception d'atelier",
+    "tiktok_handle": "@quentinfaber",
+    "tiktok_url": "https://www.tiktok.com/@quentinfaber",
+    "specialties": [
+      "Tableaux Hueforge Haute Précision",
+      "Projets Robotiques & Mécatronique",
+      "Cosplay, Casques & Sculptures 3D",
+      "Pièces Techniques & Conception CAO"
+    ]
+  },
+  "creations": [
+    {
+      "id": "proj-sauron",
+      "title": "Tableau Sauron — Le Seigneur des Anneaux",
+      "category": "hueforge",
+      "category_label": "Hueforge & Tableaux",
+      "image": "/images/projects/sauron.png",
+      "tiktok_video_url": "https://www.tiktok.com/@quentinfaber/video/7426326611181522209",
+      "description": "Tableau d'art multicouche Hueforge représentant Sauron et l'Œil du Mordor avec une gestion millimétrique de la transmission lumineuse et du relief.",
+      "tech_details": {
+        "technique": "Hueforge Multicouche",
+        "hauteur_couche": "0.08 mm",
+        "matiere": "PLA Noir / Rouge / Orange / Jaune",
+        "machine": "Bambu Lab AMS"
+      },
+      "tags": ["Seigneur des Anneaux", "Sauron", "Hueforge", "Cinéma"]
+    },
+    {
+      "id": "proj-deadpool",
+      "title": "Tableau Deadpool — Marvel",
+      "category": "hueforge",
+      "category_label": "Hueforge & Tableaux",
+      "image": "/images/projects/dead-pool.png",
+      "tiktok_video_url": "https://www.tiktok.com/@quentinfaber/video/7475031624250461462",
+      "description": "Création multicouche ultra-dynamique aux couleurs vives représentant Deadpool, optimisée pour un rendu contrasté.",
+      "tech_details": {
+        "technique": "Hueforge Multicouche",
+        "hauteur_couche": "0.08 mm",
+        "matiere": "PLA Rouge Vif / Noir / Blanc",
+        "machine": "Bambu Lab AMS"
+      },
+      "tags": ["Deadpool", "Marvel", "Hueforge", "Pop-Culture"]
+    },
+    {
+      "id": "proj-luffy",
+      "title": "Tableau Monkey D. Luffy — One Piece",
+      "category": "hueforge",
+      "category_label": "Hueforge & Tableaux",
+      "image": "/images/projects/luffy.png",
+      "tiktok_video_url": "https://www.tiktok.com/@quentinfaber/video/7443575660028710177",
+      "description": "Tableau d'art multicouche représentant Luffy en pleine pose emblématique avec son chapeau de paille.",
+      "tech_details": {
+        "technique": "Hueforge Multicouche",
+        "hauteur_couche": "0.08 mm",
+        "matiere": "PLA Noir / Rouge / Blanc",
+        "machine": "Bambu Lab AMS"
+      },
+      "tags": ["One Piece", "Luffy", "Manga", "Hueforge"]
+    },
+    {
+      "id": "proj-onepiece",
+      "title": "Panneau Écusson Mugiwara Vintage",
+      "category": "hueforge",
+      "category_label": "Hueforge & Tableaux",
+      "image": "/images/projects/onepiece.png",
+      "tiktok_video_url": "https://www.tiktok.com/@quentinfaber/video/7490588166550916354",
+      "description": "Plaque décorative murale Mugiwara One Piece avec crâne en relief texturé et esthétique rétro patinée.",
+      "tech_details": {
+        "technique": "Impression Relief multi-parties",
+        "hauteur_couche": "0.16 mm",
+        "matiere": "PLA Matte & Silk",
+        "machine": "Bambu Lab"
+      },
+      "tags": ["One Piece", "Mugiwara", "Décoration Murale", "Pop-Culture"]
+    },
+    {
+      "id": "proj-gandalf",
+      "title": "Portrait Gandalf le Gris — Le Seigneur des Anneaux",
+      "category": "hueforge",
+      "category_label": "Hueforge & Tableaux",
+      "image": "/images/projects/gandalf.png",
+      "tiktok_video_url": "https://www.tiktok.com/@quentinfaber/video/7443772075640245526",
+      "description": "Gravure 3D haute fidélité capturant les détails du visage de Gandalf et de son épée avec un dégradé de nuances monochrome.",
+      "tech_details": {
+        "technique": "Hueforge Monochrome",
+        "hauteur_couche": "0.08 mm",
+        "matiere": "PLA Noir / Gris / Blanc",
+        "machine": "Bambu Lab"
+      },
+      "tags": ["Seigneur des Anneaux", "Gandalf", "Hueforge", "Cinéma"]
+    },
+    {
+      "id": "proj-pikatchu",
+      "title": "Tableau Pikachu Halloween — Citrouille Sorcière",
+      "category": "hueforge",
+      "category_label": "Hueforge & Tableaux",
+      "image": "/images/projects/pikatchu.png",
+      "tiktok_video_url": "https://www.tiktok.com/@quentinfaber/video/7426114334075407649",
+      "description": "Tableau festif vibrant et coloré représentant Pikachu en chapeau de sorcière au milieu de citrouilles et fantômes d'Halloween.",
+      "tech_details": {
+        "technique": "Hueforge Multicolore",
+        "hauteur_couche": "0.08 mm",
+        "matiere": "PLA Jaune / Orange / Rouge / Noir",
+        "machine": "Bambu Lab AMS"
+      },
+      "tags": ["Pokémon", "Pikachu", "Halloween", "Hueforge"]
+    },
+    {
+      "id": "proj-pirate",
+      "title": "Portrait Femme Pirate & Corsaire",
+      "category": "hueforge",
+      "category_label": "Hueforge & Tableaux",
+      "image": "/images/projects/pirate.png",
+      "tiktok_video_url": "https://www.tiktok.com/@quentinfaber/video/7440898419238997281",
+      "description": "Portrait d'art texturé d'une femme pirate avec bandana, rendu avec une finesse photographique par transmission lumineuse.",
+      "tech_details": {
+        "technique": "Hueforge Sépia / Monochrome",
+        "hauteur_couche": "0.08 mm",
+        "matiere": "PLA Nuances Chaudes",
+        "machine": "Bambu Lab"
+      },
+      "tags": ["Portrait", "Pirate", "Art 3D", "Hueforge"]
+    },
+    {
+      "id": "proj-inca",
+      "title": "Portrait Guerrière Inca & Maya",
+      "category": "hueforge",
+      "category_label": "Hueforge & Tableaux",
+      "image": "/images/projects/inca.png",
+      "tiktok_video_url": "https://www.tiktok.com/@quentinfaber/video/7440451162706300193",
+      "description": "Gravure 3D captivante mettant en valeur une guerrière inca avec coiffe ornementale et texture de peau ultra-détaillée.",
+      "tech_details": {
+        "technique": "Hueforge Haute Densité",
+        "hauteur_couche": "0.08 mm",
+        "matiere": "PLA Nuances Minérales",
+        "machine": "Bambu Lab"
+      },
+      "tags": ["Inca", "Maya", "Portrait", "Hueforge"]
+    },
+    {
+      "id": "proj-femme",
+      "title": "Portrait Artistique Féminin",
+      "category": "hueforge",
+      "category_label": "Hueforge & Tableaux",
+      "image": "/images/projects/femme.png",
+      "tiktok_video_url": "https://www.tiktok.com/@quentinfaber/video/7453479188444482838",
+      "description": "Portrait artistique haute définition capturant la finesse des expressions avec des dégradés subtils de couches.",
+      "tech_details": {
+        "technique": "Hueforge Dégradé",
+        "hauteur_couche": "0.08 mm",
+        "matiere": "PLA nuances artistiques",
+        "machine": "Bambu Lab"
+      },
+      "tags": ["Portrait", "Art", "Hueforge", "Décoration"]
+    },
+    {
+      "id": "proj-sauron-helmet",
+      "title": "Casque & Masque de Sauron — Grandeur Réelle",
+      "category": "cosplay",
+      "category_label": "Cosplay & Sculptures",
+      "image": "/images/projects/sauron-helmet.png",
+      "tiktok_video_url": "https://www.tiktok.com/@quentinfaber",
+      "description": "Casque d'armure imposant de Sauron avec pointes acérées, texture d'acier forgé noir et finitions métallisées.",
+      "tech_details": {
+        "technique": "Impression grand volume & finition métal",
+        "matiere": "PLA+ & Peinture vieillie",
+        "machine": "Bambu Lab"
+      },
+      "tags": ["Sauron", "Seigneur des Anneaux", "Cosplay", "Armure"]
+    },
+    {
+      "id": "proj-bras-robotique",
+      "title": "Bras Robotique Articulé d'Atelier",
+      "category": "robotique",
+      "category_label": "Robotique & Tech",
+      "image": "/images/projects/bras-robotique.png",
+      "tiktok_video_url": "https://www.tiktok.com/@quentinfaber/video/7489128923163266326",
+      "description": "Bras robotique mécatronique multi-axes entièrement conçu et assemblé à l'atelier, équipé de servomoteurs et réducteurs imprimés en 3D.",
+      "tech_details": {
+        "technique": "Pièces mécaniques fonctionnelles",
+        "matiere": "PETG / ASA / PLA Pro",
+        "caracteristiques": "Multi-axes articulé, cinématique précise",
+        "machine": "VZBot / Bambu Lab"
+      },
+      "tags": ["Robotique", "Mécatronique", "Conception CAD", "Projet Technique"]
+    },
+    {
+      "id": "proj-main-robotique",
+      "title": "Main Robotique Articulée Bionique",
+      "category": "robotique",
+      "category_label": "Robotique & Tech",
+      "image": "/images/projects/hand-robotique.png",
+      "tiktok_video_url": "https://www.tiktok.com/@quentinfaber/video/7581938975473011990",
+      "description": "Prothèse / main articulée bionique avec système de phalanges dynamiques et câblage intégré pour mouvement réaliste.",
+      "tech_details": {
+        "technique": "Mécanisme articulé & ajustements précis",
+        "matiere": "PLA Tough / PETG",
+        "machine": "Bambu Lab"
+      },
+      "tags": ["Main Bionique", "Robotique", "Mécanique", "Prototypage"]
+    },
+    {
+      "id": "proj-spider",
+      "title": "Tableau Araignée 3D en Relief",
+      "category": "hueforge",
+      "category_label": "Hueforge & Tableaux",
+      "image": "/images/projects/spider.png",
+      "tiktok_video_url": "https://www.tiktok.com/@quentinfaber/video/7443681659670613280",
+      "description": "Création sculpturale en relief 3D mettant en valeur les détails anatomiques et la texture saisissante d'une mygale émergeant du cadre.",
+      "tech_details": {
+        "technique": "Relief 3D / Hueforge",
+        "hauteur_couche": "0.10 mm",
+        "matiere": "PLA Matte & Silk",
+        "machine": "Bambu Lab"
+      },
+      "tags": ["Sculpture", "Relief 3D", "Dark Art", "Hueforge"]
+    },
+    {
+      "id": "proj-pistol",
+      "title": "Coffret Réplique Pistolet Vintage & Munitions",
+      "category": "cosplay",
+      "category_label": "Cosplay & Sculptures",
+      "image": "/images/projects/pistol.png",
+      "tiktok_video_url": "https://www.tiktok.com/@quentinfaber/video/7295399894670429472",
+      "description": "Coffret d'exposition sur-mesure contenant une réplique d'arme rétro et ses cartouches imprimées en 3D avec finitions laiton.",
+      "tech_details": {
+        "technique": "Impression FDM & thermoformage d'écrin",
+        "matiere": "PLA Silk Gold & Matte Black",
+        "machine": "Bambu Lab"
+      },
+      "tags": ["Réplique", "Vintage", "Coffret", "Collection"]
+    },
+    {
+      "id": "proj-panthere",
+      "title": "Sculpture Panthère Noire Grandeur Nature",
+      "category": "cosplay",
+      "category_label": "Cosplay & Sculptures",
+      "image": "/images/projects/panthere.png",
+      "tiktok_video_url": "https://www.tiktok.com/@quentinfaber/video/7277241339773865249",
+      "description": "Impression monumentale en plusieurs sections d'une panthère noire grandeur nature destinée à l'ornement d'extérieur et de jardin.",
+      "tech_details": {
+        "technique": "Impression grand volume multi-pièces & post-traitement",
+        "matiere": "PETG / ASA résistant aux intempéries",
+        "machine": "VZBot / Bambu Lab"
+      },
+      "tags": ["Panthère", "Grand Format", "Extérieur", "Sculpture"]
+    }
+  ]
+}
