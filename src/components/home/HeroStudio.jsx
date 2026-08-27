@@ -1,12 +1,14 @@
 import React from 'react';
-import { ArrowRight, Wrench, MessageSquare } from 'lucide-react';
+import { ArrowRight, Wrench, Sparkles } from 'lucide-react';
 import { creatorProfile } from '../../data/projectsData';
+import HeroShowcaseCarousel from './HeroShowcaseCarousel';
 
-export default function HeroStudio({ setActiveTab, onSelectFeaturedProject }) {
+export default function HeroStudio({ setActiveTab, onSelectFeaturedProject, onOpenTikTokModal }) {
   return (
     <section className="hero-studio">
       <div className="hero-studio-content">
         <div className="hero-badge">
+          <Sparkles style={{ width: 12, height: 12, color: 'var(--accent-gold)' }} />
           <span>Atelier 3D • Quentin Faber (@quentinfaber)</span>
         </div>
 
@@ -16,7 +18,7 @@ export default function HeroStudio({ setActiveTab, onSelectFeaturedProject }) {
         </h1>
 
         <p className="hero-main-desc">
-          Bienvenue dans mon atelier 3D. Découvrez mes <strong>réalisations concrètes</strong> : tableaux d'art multicouches, projets de modélisation sous Fusion 360, mécanique robotique et pièces d'atelier.
+          Bienvenue dans mon atelier 3D. Découvrez mes <strong>réalisations concrètes</strong> : tableaux d'art multicouches, modélisations sous Fusion 360, mécanique robotique et pièces d'atelier.
         </p>
 
         <div className="hero-cta-group">
@@ -32,7 +34,7 @@ export default function HeroStudio({ setActiveTab, onSelectFeaturedProject }) {
             onClick={() => setActiveTab('workshop')}
             className="btn btn-secondary btn-lg"
           >
-            <Wrench style={{ width: 15, height: 15, color: 'var(--accent-terracotta)' }} />
+            <Wrench style={{ width: 15, height: 15, color: 'var(--accent-gold)' }} />
             <span>Stock de pièces d'atelier</span>
           </button>
         </div>
@@ -46,44 +48,11 @@ export default function HeroStudio({ setActiveTab, onSelectFeaturedProject }) {
         </div>
       </div>
 
-      {/* Mosaïque Visuelle Directe avec vos vraies photos */}
-      <div className="hero-visual-mosaic">
-        <div 
-          className="mosaic-card mosaic-main"
-          onClick={() => onSelectFeaturedProject('sauron')}
-          title="Voir le tableau Sauron"
-        >
-          <img src="/images/projects/sauron.png" alt="Tableau Sauron" />
-          <div className="mosaic-overlay">
-            <span className="mosaic-tag">Tableau 3D</span>
-            <h4>Tableau Sauron</h4>
-          </div>
-        </div>
-
-        <div 
-          className="mosaic-card mosaic-secondary-1"
-          onClick={() => onSelectFeaturedProject('bras-robotique')}
-          title="Voir le bras robotique"
-        >
-          <img src="/images/projects/bras-robotique.png" alt="Bras robotique" />
-          <div className="mosaic-overlay">
-            <span className="mosaic-tag" style={{ background: 'var(--accent-sage-subtle)', color: 'var(--accent-sage)' }}>Mécatronique</span>
-            <h4>Bras Robotique</h4>
-          </div>
-        </div>
-
-        <div 
-          className="mosaic-card mosaic-secondary-2"
-          onClick={() => onSelectFeaturedProject('deadpool')}
-          title="Voir le tableau Deadpool"
-        >
-          <img src="/images/projects/dead-pool.png" alt="Tableau Deadpool" />
-          <div className="mosaic-overlay">
-            <span className="mosaic-tag">Art 3D</span>
-            <h4>Deadpool</h4>
-          </div>
-        </div>
-      </div>
+      {/* Carrousel Dynamique Showcase de l'Atelier */}
+      <HeroShowcaseCarousel
+        onSelectProject={(project) => onSelectFeaturedProject(project.id)}
+        onOpenTikTokModal={onOpenTikTokModal}
+      />
     </section>
   );
 }

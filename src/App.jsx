@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HeroStudio from './components/home/HeroStudio';
+import AtelierMarqueeTicker from './components/home/AtelierMarqueeTicker';
 import ExpertisePillars from './components/home/ExpertisePillars';
 import ProjectGallery from './components/projects/ProjectGallery';
 import ProjectDetailsModal from './components/projects/ProjectDetailsModal';
@@ -52,7 +53,7 @@ export default function App() {
       {/* Header Global */}
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {/* Barre de navigation principale avec Vercel */}
+      {/* Barre de navigation principale (Desktop) */}
       <nav className="main-nav-bar">
         <div className="app-container main-nav-inner">
           <button
@@ -76,9 +77,9 @@ export default function App() {
             onClick={() => setActiveTab('vercel')}
             className={`nav-pill-btn ${activeTab === 'vercel' ? 'active' : ''}`}
           >
-            <Cloud style={{ width: 16, height: 16, color: 'var(--accent-cyan)' }} />
+            <Cloud style={{ width: 16, height: 16, color: 'var(--accent-gold)' }} />
             <span>Projets Web & Vercel</span>
-            <span className="nav-pill-badge" style={{ color: 'var(--accent-indigo)', background: 'rgba(129, 140, 248, 0.15)' }}>
+            <span className="nav-pill-badge" style={{ color: 'var(--accent-gold)', background: 'var(--accent-gold-subtle)' }}>
               {vercelProjectsList.length}
             </span>
           </button>
@@ -109,7 +110,11 @@ export default function App() {
             <HeroStudio
               setActiveTab={setActiveTab}
               onSelectFeaturedProject={handleSelectProjectById}
+              onOpenTikTokModal={setTiktokModalProject}
             />
+
+            {/* Ruban Ticker Défilant Continu */}
+            <AtelierMarqueeTicker />
 
             <ExpertisePillars />
 
