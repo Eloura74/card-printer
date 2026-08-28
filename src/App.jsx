@@ -6,6 +6,7 @@ import AtelierMarqueeTicker from './components/home/AtelierMarqueeTicker';
 import WorkshopHighlights from './components/home/WorkshopHighlights';
 import ExpertisePillars from './components/home/ExpertisePillars';
 import ProjectGallery from './components/projects/ProjectGallery';
+import ProjectCard from './components/projects/ProjectCard';
 import ProjectDetailsModal from './components/projects/ProjectDetailsModal';
 import TikTokModal from './components/projects/TikTokModal';
 import WorkshopStock from './components/workshop/WorkshopStock';
@@ -249,39 +250,12 @@ export default function App() {
 
               <div className="portfolio-grid" style={{ marginBottom: '2.5rem' }}>
                 {projectsList.slice(0, 6).map((project) => (
-                  <div
+                  <ProjectCard
                     key={project.id}
-                    className="card project-card-modern"
-                    onClick={() => openProjectModal(project)}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <div className="card-image-wrapper">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="card-image"
-                        loading="lazy"
-                      />
-                      <div className="card-image-badge">
-                        <span className="card-tag cyan">
-                          {project.categoryLabel}
-                        </span>
-                      </div>
-                    </div>
-
-                    <h3 className="card-title">{project.title}</h3>
-                    <p className="card-desc">{project.description}</p>
-
-                    <div className="card-footer">
-                      <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                        Quentin Faber
-                      </span>
-                      <span className="card-action-link">
-                        <span>Voir détails</span>
-                        <ArrowRight style={{ width: 13, height: 13 }} />
-                      </span>
-                    </div>
-                  </div>
+                    project={project}
+                    onSelectProject={openProjectModal}
+                    onOpenTikTokModal={openTikTokModal}
+                  />
                 ))}
               </div>
 
