@@ -1,25 +1,39 @@
 import React, { useState, useMemo } from 'react';
 import { 
-  Globe, 
-  Terminal, 
-  CheckCircle2, 
-  Cloud, 
-  Sparkles, 
-  Layers, 
-  Code, 
-  GitBranch, 
-  Search, 
-  X, 
-  Lock, 
-  ShieldCheck, 
-  ShieldAlert, 
-  ExternalLink,
-  Cpu,
-  Server,
-  FileCode,
-  Send,
+  Printer,
+  Boxes,
+  Lightbulb,
+  Zap,
+  Camera,
+  Target,
+  CloudSun,
+  Utensils,
+  BookOpen,
+  Wine,
+  Beer,
+  Terminal,
+  Layout,
+  Compass,
+  Flower2,
+  CheckSquare,
+  Palette,
+  ShieldCheck,
+  ShieldAlert,
+  Lock,
+  Sparkles,
+  Layers,
+  GitBranch,
+  Search,
+  X,
   Eye,
-  Info
+  Send,
+  CheckCircle2,
+  ArrowRight,
+  Server,
+  Cloud,
+  Cpu,
+  Globe,
+  Code
 } from 'lucide-react';
 import { vercelProfile, vercelProjectsList } from '../../data/vercelProjectsData';
 
@@ -45,11 +59,59 @@ export default function VercelProjectsSection({ onOpenContactWithApp }) {
         searchTerm.trim() === '' ||
         p.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         p.domain.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.purpose.toLowerCase().includes(searchTerm.toLowerCase()) ||
         p.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         p.tags.some((t) => t.toLowerCase().includes(searchTerm.toLowerCase()));
       return matchCat && matchSearch;
     });
   }, [selectedCategory, searchTerm]);
+
+  // Rendu de l'icône contextuelle explicite
+  const renderProjectIcon = (iconType) => {
+    const iconProps = { style: { width: 18, height: 18 } };
+    switch (iconType) {
+      case 'printer':
+        return <Printer {...iconProps} />;
+      case 'boxes':
+        return <Boxes {...iconProps} />;
+      case 'lamp':
+        return <Lightbulb {...iconProps} />;
+      case 'zap':
+        return <Zap {...iconProps} />;
+      case 'camera':
+        return <Camera {...iconProps} />;
+      case 'target':
+        return <Target {...iconProps} />;
+      case 'cloud-sun':
+        return <CloudSun {...iconProps} />;
+      case 'utensils':
+        return <Utensils {...iconProps} />;
+      case 'book-open':
+        return <BookOpen {...iconProps} />;
+      case 'sparkles':
+        return <Sparkles {...iconProps} />;
+      case 'wine':
+        return <Wine {...iconProps} />;
+      case 'beer':
+        return <Beer {...iconProps} />;
+      case 'terminal':
+        return <Terminal {...iconProps} />;
+      case 'layout':
+        return <Layout {...iconProps} />;
+      case 'compass':
+        return <Compass {...iconProps} />;
+      case 'flower':
+        return <Flower2 {...iconProps} />;
+      case 'check-square':
+        return <CheckSquare {...iconProps} />;
+      case 'palette':
+        return <Palette {...iconProps} />;
+      case 'shield-check':
+        return <ShieldCheck {...iconProps} />;
+      default:
+        return <Code {...iconProps} />;
+    }
+  };
 
   return (
     <section className="vercel-section">
@@ -57,8 +119,7 @@ export default function VercelProjectsSection({ onOpenContactWithApp }) {
         <span className="section-eyebrow">Ingénierie Web & Cloud</span>
         <h2 className="section-heading">Vitrine des 19 Applications Vercel</h2>
         <p className="section-subtext">
-          Présentation technique des architectures web et outils d'atelier développés par Quentin Faber. 
-          Les applications sont présentées en mode vitrine sécurisée (écriture et administration réservées).
+          Présentation explicite des applications, architectures logicielles et outils développés par Quentin Faber.
         </p>
       </div>
 
@@ -76,15 +137,15 @@ export default function VercelProjectsSection({ onOpenContactWithApp }) {
                 {vercelProfile.accountName}
               </h3>
               <span className="card-tag cyan">
-                <Cloud style={{ width: 12, height: 12 }} /> {vercelProjectsList.length} Déploiements Cloud
+                <Cloud style={{ width: 12, height: 12 }} /> 19 Déploiements Cloud
               </span>
               <span className="card-tag amber" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
-                <Lock style={{ width: 11, height: 11 }} /> Mode Vitrine Sécurisée
+                <Lock style={{ width: 11, height: 11 }} /> Mode Vitrine Sécurisée (Lecture Seule)
               </span>
             </div>
-            <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', marginTop: '0.45rem', maxWidth: 740, lineHeight: 1.6 }}>
-              {vercelProfile.bio} <strong>Les bases de données de production et modules d'administration restent strictement protégés</strong> : 
-              cliquez sur une application pour consulter sa fiche technique détaillée, ses fonctionnalités et sa pile logicielle.
+            <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', marginTop: '0.45rem', maxWidth: 760, lineHeight: 1.6 }}>
+              {vercelProfile.bio} <strong>Les bases de données de production et modules d'administration réels restent protégés</strong> : 
+              chaque carte détaille le rôle de l'application, ses modules clés et son architecture technique.
             </p>
           </div>
         </div>
@@ -110,7 +171,7 @@ export default function VercelProjectsSection({ onOpenContactWithApp }) {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Rechercher un projet (Inventory, LumiStock, StockElec, Let's Cook, Météo, To-Do...)"
+            placeholder="Rechercher une application (StockFlow, LumiStock, StockElec, Let's Cook, Météo Maps, TaskFlow...)"
             className="search-input"
           />
           {searchTerm && (
@@ -146,7 +207,7 @@ export default function VercelProjectsSection({ onOpenContactWithApp }) {
             className={`pill-btn ${selectedCategory === 'tools' ? 'active' : ''}`}
           >
             <Terminal style={{ width: 14, height: 14 }} />
-            <span>Outils & Gestion ({counts.tools})</span>
+            <span>Outils & Logistique ({counts.tools})</span>
           </button>
 
           <button
@@ -162,7 +223,7 @@ export default function VercelProjectsSection({ onOpenContactWithApp }) {
             className={`pill-btn ${selectedCategory === 'portfolio' ? 'active' : ''}`}
           >
             <Globe style={{ width: 14, height: 14 }} />
-            <span>Portfolios & Découvertes ({counts.portfolio})</span>
+            <span>Portfolios & Vitrines ({counts.portfolio})</span>
           </button>
 
           <button
@@ -175,7 +236,7 @@ export default function VercelProjectsSection({ onOpenContactWithApp }) {
         </div>
       </div>
 
-      {/* Grille des 19 Projets Vercel (Mode Vitrine Technique) */}
+      {/* Grille des 19 Cartes Vercel Explicites */}
       {filteredProjects.length === 0 ? (
         <div className="empty-results-box" style={{ textAlign: 'center', padding: '3rem 1rem' }}>
           <p style={{ color: 'var(--text-muted)' }}>Aucun projet Vercel ne correspond à "{searchTerm}".</p>
@@ -194,49 +255,58 @@ export default function VercelProjectsSection({ onOpenContactWithApp }) {
               key={project.id} 
               className="card vercel-project-card"
               onClick={() => setSelectedModalProject(project)}
-              style={{ cursor: 'pointer' }}
             >
-              <div>
-                <div className="vercel-card-header">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                    <div className="vercel-icon-badge cyan">
-                      <FileCode style={{ width: 16, height: 16 }} />
-                    </div>
-                    <div>
-                      <span style={{ fontSize: '0.72rem', color: 'var(--accent-gold)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 700 }}>
-                        {project.framework}
-                      </span>
-                      <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.08rem', fontWeight: 700, color: '#ffffff' }}>
-                        {project.title}
-                      </h4>
-                    </div>
-                  </div>
+              {/* 1. Barre de fenêtre d'application (Browser Mockup Bar) */}
+              <div className="browser-mockup-bar">
+                <div className="browser-dots">
+                  <span className="dot red" />
+                  <span className="dot yellow" />
+                  <span className="dot green" />
+                </div>
+                <div className="browser-domain-pill" title={`Domaine : ${project.domain}`}>
+                  <Lock style={{ width: 10, height: 10, color: 'var(--accent-gold)', flexShrink: 0 }} />
+                  <span className="browser-domain-text">{project.domain}</span>
+                </div>
+                <span className="browser-framework-badge">
+                  {project.framework}
+                </span>
+              </div>
 
-                  <span className="card-tag amber" title="Données protégées • Consultation seule">
-                    <Lock style={{ width: 10, height: 10 }} /> Données Protégées
-                  </span>
+              {/* 2. Corps de la carte */}
+              <div className="vercel-card-body">
+                <div className="vercel-title-row">
+                  <div className="vercel-icon-circle">
+                    {renderProjectIcon(project.iconType)}
+                  </div>
+                  <div>
+                    <span className="vercel-category-eyebrow">{project.categoryLabel}</span>
+                    <h3 className="vercel-card-title">{project.title}</h3>
+                  </div>
                 </div>
 
-                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: '1rem 0' }}>
+                {/* Encadré Objectif & Rôle Principal */}
+                <div className="vercel-purpose-box">
+                  <span className="purpose-label">🎯 Rôle :</span>
+                  <span className="purpose-text">{project.purpose}</span>
+                </div>
+
+                <p className="vercel-card-desc">
                   {project.description}
                 </p>
 
-                <div className="card-specs-box" style={{ marginBottom: '1rem' }}>
-                  <div className="spec-row">
-                    <span className="spec-key">Domaine de déploiement :</span>
-                    <span className="spec-val" style={{ color: 'var(--accent-gold)', fontFamily: 'monospace', fontSize: '0.78rem' }}>
-                      {project.domain}
-                    </span>
-                  </div>
-                  <div className="spec-row">
-                    <span className="spec-key">Niveau d'accès :</span>
-                    <span className="spec-val" style={{ color: '#fbbf24' }}>
-                      Vitrine Technique / Admin Verrouillé
-                    </span>
-                  </div>
+                {/* Liste explicite des fonctionnalités concrètes */}
+                <div className="vercel-highlights-list">
+                  <span className="highlights-header">Fonctionnalités & Modules clés :</span>
+                  {project.highlights.map((h, i) => (
+                    <div key={i} className="highlight-item">
+                      <CheckCircle2 style={{ width: 13, height: 13, color: 'var(--accent-gold)', flexShrink: 0, marginTop: '0.15rem' }} />
+                      <span>{h}</span>
+                    </div>
+                  ))}
                 </div>
 
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.25rem' }}>
+                {/* Tags Technologiques */}
+                <div className="vercel-tags-row">
                   {project.tags.map((t, idx) => (
                     <span key={idx} className="tag-pill">
                       #{t}
@@ -245,18 +315,20 @@ export default function VercelProjectsSection({ onOpenContactWithApp }) {
                 </div>
               </div>
 
-              <div className="card-footer">
+              {/* 3. Pied de carte & Boutons */}
+              <div className="vercel-card-footer">
                 <button
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedModalProject(project);
                   }}
-                  className="btn btn-secondary"
-                  style={{ fontSize: '0.78rem', padding: '0.45rem 0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
+                  className="btn btn-primary btn-sm"
+                  style={{ flex: 1, justifyContent: 'center' }}
                 >
-                  <Eye style={{ width: 13, height: 13, color: 'var(--accent-gold)' }} />
-                  <span>Fiche Technique & Specs</span>
+                  <Eye style={{ width: 13, height: 13 }} />
+                  <span>Fiche & Architecture</span>
+                  <ArrowRight style={{ width: 12, height: 12 }} />
                 </button>
 
                 {project.repoUrl && (
@@ -265,11 +337,11 @@ export default function VercelProjectsSection({ onOpenContactWithApp }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="card-action-link"
+                    className="btn btn-secondary btn-sm"
                     title="Voir le dépôt GitHub"
                   >
                     <GitBranch style={{ width: 13, height: 13 }} />
-                    <span>Code Source</span>
+                    <span>Code</span>
                   </a>
                 )}
               </div>
@@ -278,10 +350,10 @@ export default function VercelProjectsSection({ onOpenContactWithApp }) {
         </div>
       )}
 
-      {/* Modale Fiche Technique & Présentation de Projet Développé */}
+      {/* Modale Fiche Technique Détaillée de l'Application */}
       {selectedModalProject && (
         <div className="modal-overlay" onClick={() => setSelectedModalProject(null)}>
-          <div className="modal-card" onClick={(e) => e.stopPropagation()} style={{ maxWidth: 580 }}>
+          <div className="modal-card" onClick={(e) => e.stopPropagation()} style={{ maxWidth: 620 }}>
             <button 
               className="close-btn" 
               onClick={() => setSelectedModalProject(null)} 
@@ -291,21 +363,21 @@ export default function VercelProjectsSection({ onOpenContactWithApp }) {
               <X style={{ width: 18, height: 18 }} />
             </button>
 
-            {/* En-tête de la Fiche Projet */}
+            {/* En-tête de la Fiche */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1.25rem' }}>
               <div style={{ 
                 width: 48, 
                 height: 48, 
                 borderRadius: 'var(--radius-sm)', 
-                background: 'rgba(201, 169, 110, 0.12)', 
-                border: '1px solid rgba(201, 169, 110, 0.35)', 
+                background: 'rgba(201, 169, 110, 0.15)', 
+                border: '1px solid rgba(201, 169, 110, 0.4)', 
                 display: 'flex', 
                 alignItems: 'center', 
                 justifyContent: 'center', 
                 color: 'var(--accent-gold)', 
                 flexShrink: 0 
               }}>
-                <Server style={{ width: 24, height: 24 }} />
+                {renderProjectIcon(selectedModalProject.iconType)}
               </div>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
@@ -313,55 +385,79 @@ export default function VercelProjectsSection({ onOpenContactWithApp }) {
                     {selectedModalProject.categoryLabel}
                   </span>
                   <span className="card-tag amber" style={{ fontSize: '0.68rem', padding: '0.15rem 0.5rem' }}>
-                    <Lock style={{ width: 9, height: 9 }} /> Données Protégées
+                    <Lock style={{ width: 9, height: 9 }} /> Données Protégées (Admin)
                   </span>
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.35rem', fontWeight: 800, color: '#ffffff', marginTop: '0.2rem' }}>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', fontWeight: 800, color: '#ffffff', marginTop: '0.2rem' }}>
                   {selectedModalProject.title}
                 </h3>
               </div>
             </div>
 
-            {/* Avertissement de Protection des Données d'Administration */}
+            {/* Encadré Objectif & Protection */}
             <div style={{ 
-              background: 'rgba(251, 191, 36, 0.08)', 
+              background: 'rgba(251, 191, 36, 0.07)', 
               border: '1px solid rgba(251, 191, 36, 0.25)', 
               borderRadius: 'var(--radius-sm)', 
-              padding: '0.75rem 0.95rem', 
-              marginBottom: '1.25rem',
+              padding: '0.85rem 1rem', 
+              marginBottom: '1.35rem',
               display: 'flex',
               alignItems: 'flex-start',
-              gap: '0.65rem'
+              gap: '0.75rem'
             }}>
-              <ShieldAlert style={{ width: 18, height: 18, color: '#fbbf24', flexShrink: 0, marginTop: '0.1rem' }} />
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5, margin: 0 }}>
-                <strong>Protection de production :</strong> Cette application est connectée à des bases de données réelles d'atelier ou de gestion. 
-                Afin d'éviter toute altération ou modification accidentelle, la vitrine est configurée en <strong>mode présentation lecture seule</strong>.
-              </p>
+              <ShieldAlert style={{ width: 20, height: 20, color: '#fbbf24', flexShrink: 0, marginTop: '0.1rem' }} />
+              <div>
+                <p style={{ fontSize: '0.84rem', color: '#ffffff', fontWeight: 600, margin: '0 0 0.25rem 0' }}>
+                  {selectedModalProject.purpose}
+                </p>
+                <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.5, margin: 0 }}>
+                  Application connectée à des bases de données réelles. Pour préserver l'intégrité des inventaires et des données atelier, 
+                  l'application est documentée en <strong>mode vitrine technique</strong> (les droits d'écriture sont réservés à Quentin Faber).
+                </p>
+              </div>
             </div>
 
-            {/* Description Détaillée */}
+            {/* Description Complète */}
             <div style={{ marginBottom: '1.35rem' }}>
               <h4 style={{ fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--accent-gold)', fontWeight: 700, marginBottom: '0.45rem' }}>
-                Description du Projet
+                Description & Fonctionnement
               </h4>
               <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}>
                 {selectedModalProject.description}
               </p>
             </div>
 
-            {/* Fiche des Spécifications Techniques */}
+            {/* Fonctionnalités Clés Développées */}
+            <div style={{ marginBottom: '1.35rem', background: 'var(--bg-surface-elevated)', padding: '0.9rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+              <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#ffffff', fontWeight: 700, marginBottom: '0.65rem' }}>
+                Modules & Réalisations Développés :
+              </h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                {selectedModalProject.highlights.map((h, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
+                    <CheckCircle2 style={{ width: 14, height: 14, color: 'var(--accent-gold)', flexShrink: 0, marginTop: '0.15rem' }} />
+                    <span>{h}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Spécifications & Architecture */}
             <div className="card-specs-box" style={{ marginBottom: '1.4rem' }}>
               <div className="spec-row">
-                <span className="spec-key">Framework & Architecture :</span>
-                <span className="spec-val" style={{ color: '#ffffff', fontWeight: 600 }}>{selectedModalProject.framework}</span>
+                <span className="spec-key">Stack & Framework :</span>
+                <span className="spec-val" style={{ color: '#ffffff', fontWeight: 600 }}>{selectedModalProject.architecture?.stack || selectedModalProject.framework}</span>
+              </div>
+              <div className="spec-row">
+                <span className="spec-key">Gestion d'État & Données :</span>
+                <span className="spec-val" style={{ color: 'var(--accent-gold)' }}>{selectedModalProject.architecture?.state || 'React Hooks & Local Storage'}</span>
               </div>
               <div className="spec-row">
                 <span className="spec-key">Hébergement Cloud :</span>
                 <span className="spec-val" style={{ color: 'var(--accent-gold)' }}>Vercel Cloud Edge Network</span>
               </div>
               <div className="spec-row">
-                <span className="spec-key">Domaine de production :</span>
+                <span className="spec-key">Domaine de déploiement :</span>
                 <span className="spec-val" style={{ fontFamily: 'monospace', color: '#38bdf8' }}>{selectedModalProject.domain}</span>
               </div>
               <div className="spec-row">
@@ -372,9 +468,6 @@ export default function VercelProjectsSection({ onOpenContactWithApp }) {
 
             {/* Tags & Technologies */}
             <div style={{ marginBottom: '1.5rem' }}>
-              <h4 style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', fontWeight: 700, marginBottom: '0.45rem' }}>
-                Technologies & Modules
-              </h4>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
                 {selectedModalProject.tags.map((tag, idx) => (
                   <span key={idx} className="tag-pill" style={{ fontSize: '0.75rem', padding: '0.25rem 0.65rem' }}>
@@ -384,7 +477,7 @@ export default function VercelProjectsSection({ onOpenContactWithApp }) {
               </div>
             </div>
 
-            {/* Boutons d'Action Sécurisés */}
+            {/* Actions du Modal */}
             <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', flexWrap: 'wrap', borderTop: '1px solid var(--border-subtle)', paddingTop: '1.15rem' }}>
               {selectedModalProject.repoUrl && (
                 <a

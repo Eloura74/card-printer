@@ -1296,39 +1296,211 @@ body {
   flex-wrap: wrap;
 }
 
-.vercel-card-header {
+/* Vercel Project Cards (Enhanced & Explicit) */
+.vercel-project-card {
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(16, 20, 30, 0.95) 0%, rgba(10, 12, 18, 0.98) 100%);
+  border: 1px solid var(--border-card);
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.vercel-project-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(201, 169, 110, 0.5);
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.6), 0 0 20px -4px rgba(201, 169, 110, 0.15);
+}
+
+/* Browser Mockup Top Bar */
+.browser-mockup-bar {
+  background: #090b10;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.55rem 0.85rem;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
 }
 
-.vercel-icon-badge {
-  width: 36px;
-  height: 36px;
+.browser-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.browser-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.browser-dots .dot.red { background: #ef4444; }
+.browser-dots .dot.yellow { background: #eab308; }
+.browser-dots .dot.green { background: #22c55e; }
+
+.browser-domain-pill {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-pill);
+  padding: 0.2rem 0.55rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  max-width: 55%;
+}
+
+.browser-domain-text {
+  font-family: monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.browser-framework-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  background: var(--accent-gold-subtle);
+  padding: 0.15rem 0.45rem;
   border-radius: var(--radius-sm);
+  border: 1px solid rgba(201, 169, 110, 0.3);
+  white-space: nowrap;
+}
+
+/* Card Body */
+.vercel-card-body {
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.vercel-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.vercel-icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: rgba(201, 169, 110, 0.12);
+  border: 1px solid rgba(201, 169, 110, 0.3);
+  color: var(--accent-gold);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
-.vercel-icon-badge.cyan {
-  background: var(--accent-gold-subtle);
+.vercel-category-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  display: block;
+}
+
+.vercel-card-title {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0.1rem 0 0 0;
+  line-height: 1.3;
+}
+
+/* Purpose Box */
+.vercel-purpose-box {
+  background: rgba(30, 41, 59, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-left: 3px solid var(--accent-gold);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.75rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  line-height: 1.45;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.purpose-label {
+  font-weight: 700;
   color: var(--accent-gold);
-  border: 1px solid rgba(201, 169, 110, 0.35);
+  white-space: nowrap;
 }
 
-.vercel-icon-badge.emerald {
-  background: var(--accent-sage-subtle);
-  color: var(--accent-sage);
-  border: 1px solid rgba(74, 222, 128, 0.3);
-}
-
-.vercel-icon-badge.indigo {
-  background: rgba(226, 232, 240, 0.08);
+.purpose-text {
   color: #e2e8f0;
-  border: 1px solid rgba(226, 232, 240, 0.25);
+}
+
+.vercel-card-desc {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 0.95rem;
+}
+
+/* Highlights List */
+.vercel-highlights-list {
+  background: rgba(9, 11, 16, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.85rem;
+  margin-bottom: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.highlights-header {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.2rem;
+  display: block;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  font-size: 0.79rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Tags */
+.vercel-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: auto;
+  padding-top: 0.6rem;
+}
+
+/* Card Footer */
+.vercel-card-footer {
+  padding: 0.85rem 1.25rem 1.15rem 1.25rem;
+  background: rgba(7, 9, 13, 0.7);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
 }
 
 /* Filter Bar */
