@@ -298,7 +298,11 @@ export default function App() {
 
         {/* VUE 3 : PROJETS WEB & VERCEL */}
         {activeTab === 'vercel' && (
-          <VercelProjectsSection />
+          <VercelProjectsSection
+            onOpenContactWithApp={(appTitle) => {
+              handleContactAboutProject({ title: `Application Web : ${appTitle}`, id: `vercel-${appTitle}` });
+            }}
+          />
         )}
 
         {/* VUE 4 : ATELIER & STOCK DE PIÈCES */}

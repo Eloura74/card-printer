@@ -49,8 +49,8 @@ export default function Footer({ setActiveTab }) {
 
           <div className="footer-col">
             <h4>Plateformes & Cloud</h4>
-            <a href={vercelProfile.vercelUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-              <span>Compte Vercel Cloud</span>
+            <a href={vercelProfile.githubUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+              <span>GitHub @Eloura74</span>
               <ExternalLink style={{ width: 12, height: 12 }} />
             </a>
             <a href={creatorProfile.tiktokUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>

@@ -196,16 +196,14 @@ export default function Header({ activeTab, setActiveTab }) {
                 <span>Mon Profil TikTok ({creatorProfile.tiktokHandle})</span>
               </a>
 
-              <a
-                href={vercelProfile.vercelUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => handleNavClick('vercel')}
                 className="btn btn-secondary"
                 style={{ width: '100%', justifyContent: 'center', marginTop: '0.5rem' }}
               >
-                <Cloud style={{ width: 15, height: 15, color: 'var(--accent-cyan)' }} />
+                <Cloud style={{ width: 15, height: 15, color: 'var(--accent-gold)' }} />
                 <span>Mes Déploiements Vercel</span>
-              </a>
+              </button>
             </div>
           </div>
         </div>
